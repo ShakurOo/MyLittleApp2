@@ -7,16 +7,16 @@ class Header extends PureComponent {
     const { pathname } = this.props.location
 
     const isHome = pathname === '/'
-    const isJustAnotherPage = pathname === '/page-bis'
+    const isJustAnotherPage = pathname === '/reviews'
 
     return (
-      <header className={style.globalHeader}>
+      <header className={style.wrapper}>
         <ul>
           <li className={isHome ? style.active : ''}>
             {isHome ? 'Home' : <Link to='/'>Home</Link>}
           </li>
           <li className={isJustAnotherPage ? style.active : ''}>
-            { isJustAnotherPage ? 'Page Bis' : <Link to='/page-bis'>Page Bis</Link> }
+            { isJustAnotherPage ? 'Reviews' : <Link to='/reviews'>Reviews</Link> }
           </li>
         </ul>
       </header>
