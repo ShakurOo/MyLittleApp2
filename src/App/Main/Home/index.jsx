@@ -1,6 +1,7 @@
 // @flow
 import React from 'react'
 import withConnect from './connector'
+import LogoIMG from './assets/logo.png'
 import style from './style'
 
 type Props = {|
@@ -10,6 +11,11 @@ type Props = {|
 
 const Home = ({ device, onGetDevice }: Props) => (
   <div className={style.wrapper}>
+    <img
+      alt='MyLittleApp'
+      className={style.logo}
+      src={LogoIMG}
+    />
     <h1>Welcome in MyLittleApp</h1>
 
     <h3>Basic data flow example</h3>

@@ -1,5 +1,16 @@
 .wrapper {
 
+  .logo, h1 {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .logo {
+    height: auto;
+    margin-right: 10px;
+    width: 75px;
+  }
+
   .wrapperButton, .wrapperResult {
     display: inline-block;
     vertical-align: middle;
