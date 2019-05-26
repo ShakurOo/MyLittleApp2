@@ -7,7 +7,8 @@ class Header extends PureComponent {
     const { pathname } = this.props.location
 
     const isHome = pathname === '/'
-    const isJustAnotherPage = pathname === '/reviews'
+    const isReviews = pathname === '/reviews'
+    const isAddReview = pathname === '/add-review'
 
     return (
       <header className={style.wrapper}>
@@ -15,8 +16,11 @@ class Header extends PureComponent {
           <li className={isHome ? style.active : ''}>
             {isHome ? 'Home' : <Link to='/'>Home</Link>}
           </li>
-          <li className={isJustAnotherPage ? style.active : ''}>
-            { isJustAnotherPage ? 'Reviews' : <Link to='/reviews'>Reviews</Link> }
+          <li className={isReviews ? style.active : ''}>
+            { isReviews ? 'Reviews' : <Link to='/reviews'>Reviews</Link> }
+          </li>
+          <li className={isAddReview ? style.active : ''}>
+            { isAddReview ? 'Add review' : <Link to='/add-review'>Add review</Link> }
           </li>
         </ul>
       </header>

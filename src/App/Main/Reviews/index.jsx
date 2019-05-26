@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import type { Reviews as ReviewsType } from 'types'
 import withConnect from './connector'
 import style from './style'
@@ -19,13 +20,20 @@ class Reviews extends Component<Props> {
     return (
       <div className={style.wrapper}>
         <h1>Reviews list</h1>
-        <p>
+        <p className={style.head}>
           <strong>The inital reviews comes from reducer</strong> where the data is static. However, <strong>the button bellow triggers a XHR call which returns a new review</strong>.
           In other words, each time the button is clicked, a new dynamic review aggregate the existing reviews list.
         </p>
+        <button
+          type='button'
+          className='light'
+        >
+          <Link to='/add-review'>Add your own review</Link>
+        </button>
         <p className={style.limit}>
           Reviews quantity limit: <span>10</span>
         </p>
+        <br />
         <br />
 
         <div className={style.wrapperReviews}>
@@ -45,8 +53,18 @@ class Reviews extends Component<Props> {
 
         { reviews.length <= 10 && (
           <div className={style.wrapperLoadMore}>
-            <button onClick={onGetReview} type='button'>
+            <button
+              onClick={onGetReview}
+              type='button'
+            >
               Load additional review
+            </button>
+
+            <button
+              type='button'
+              className='light'
+            >
+              <Link to='/add-review'>Add your own review</Link>
             </button>
           </div>
         )}

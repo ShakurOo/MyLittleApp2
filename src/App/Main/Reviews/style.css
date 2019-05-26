@@ -1,9 +1,15 @@
 .wrapper {
 
+  .head {
+    margin-bottom: 50px;
+
+    & + button {
+      float: left;
+    }
+  }
+
   .limit {
-    margin-top: 30px;
-    margin-bottom: 0;
-    text-align: right;
+    float: right;
 
     span {
       color: #ff7c81;
@@ -11,6 +17,7 @@
   }
 
   .wrapperReviews {
+    margin-top: 20px;
 
     .review {
       border-top: solid 1px #e1e1e1;
@@ -40,6 +47,13 @@
         position: relative;
         top: 2px;
       }
+    }
+  }
+
+  .wrapperLoadMore {
+
+    button {
+      margin-right: 15px;
     }
   }
 }

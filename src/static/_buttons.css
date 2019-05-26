@@ -7,7 +7,24 @@ button {
   font-size: 1rem;
   padding: 10px 15px;
 
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
   &:hover {
     background-color: #ff5057;
+  }
+}
+
+:global(.light) {
+  background-color: #ffffff;
+  border: solid 1px #e1e1e1;
+  color: gray;
+
+  &:hover {
+    background-color: #ffffff;
+    border-color: #2b2b2b;
+    color: #2b2b2b;
   }
 }
