@@ -13,6 +13,7 @@ const Home = ({ device, onGetDevice }: Props) => (
     <h1>Welcome in MyLittleApp</h1>
 
     <h3>Basic data flow example</h3>
+
     <p>Explanation :</p>
     <ul>
       <li>Button component trigger an event (redux action)</li>
@@ -22,15 +23,18 @@ const Home = ({ device, onGetDevice }: Props) => (
       <li>A selector (getter), detects the change, compute the newest value</li>
       <li>Finally, the prop is updated, the connected component is rerender through the inner component lifecycle mechanisme</li>
     </ul>
-    <button onClick={onGetDevice} type='button'>
-      Get Device info
-    </button>
 
-    <h3>
-      <strong>Current Device :</strong>
+    <h3>Demo for device prop :</h3>
+    <div className={style.wrapperButton}>
+      <button onClick={onGetDevice} type='button'>
+        Get Device info
+      </button>
+      <p>Check the logs in the Console (F12)</p>
+    </div>
+
+    <div className={style.wrapperResult}>
       <pre>{JSON.stringify(device, null, 2) }</pre>
-    </h3>
-    <p><strong>Check the logs in the Console (F12)</strong></p>.
+    </div>
   </div>
 )
 
