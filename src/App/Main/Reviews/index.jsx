@@ -10,10 +10,10 @@ type ReviewsType = Array<Review>;
 
 type Props = {|
   +reviews: ReviewsType,
-  +onLoadReview: () => void
+  +onGetReview: () => void
 |}
 
-const Reviews = ({ reviews, onLoadReview }: Props) => (
+const Reviews = ({ reviews, onGetReview }: Props) => (
   <div className={style.wrapper}>
     <h1>Reviews list</h1>
     <p>
@@ -31,7 +31,7 @@ const Reviews = ({ reviews, onLoadReview }: Props) => (
     </ul>
 
     <div className={style.wrapperLoadMore}>
-      <button click={onLoadReview}>
+      <button onClick={onGetReview} type='button'>
         Load additional review
       </button>
     </div>

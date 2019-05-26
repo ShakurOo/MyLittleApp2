@@ -8,7 +8,7 @@ import type { GetDeviceAction, SetDeviceAction } from './actions'
 import epics from './epics'
 
 export type State = { +application: ApplicationState }
-export type Action = GetDeviceAction | SetDeviceAction
+export type Action = GetDeviceAction | SetDeviceAction | GetReviewAction
 export type ActionType = string
 export type ActionCreator<A:Action> = (...any) => A
 export type GetState = () => State

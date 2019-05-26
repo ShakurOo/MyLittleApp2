@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { onLoadReview } from 'store/actions'
+import { onGetReview } from 'store/actions'
 import { getDevice } from 'store/selectors'
 
 const mapStateToProps = state => ({
@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = ({
-  onLoadReview
+  onGetReview
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)
