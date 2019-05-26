@@ -1,5 +1,6 @@
 // @flow
 export * from './device'
+export * from './reviews'
 
 export type {
   Action,

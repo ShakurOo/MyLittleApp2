@@ -4,11 +4,27 @@ import { createEpicMiddleware } from 'redux-observable'
 import type { Observable } from 'rxjs'
 import * as api from '../api'
 import application, { type ApplicationState } from './reducers/application'
-import type { GetDeviceAction, SetDeviceAction } from './actions'
+import reviews, { type ReviewsState } from './reducers/reviews'
+import type {
+  GetDeviceAction,
+  GetReviewAction,
+  ReviewFetchedAction,
+  ReviewFetchErrorAction,
+  ReviewFetchStartedAction,
+  SetDeviceAction
+} from './actions'
 import epics from './epics'
 
-export type State = { +application: ApplicationState }
-export type Action = GetDeviceAction | SetDeviceAction | GetReviewAction
+export type State = {
+  +application: ApplicationState,
+  +reviewsState: ReviewsState
+}
+export type Action = GetDeviceAction
+| SetDeviceAction
+| GetReviewAction
+| ReviewFetchedAction
+| ReviewFetchErrorAction
+| ReviewFetchStartedAction
 export type ActionType = string
 export type ActionCreator<A:Action> = (...any) => A
 export type GetState = () => State
@@ -20,7 +36,8 @@ export type Selector<T> = State => T
 export type Reducer<S> = (S, Action) => S
 
 const reducer = combineReducers({
-  application
+  application,
+  reviews
 })
 
 const middlewares = []

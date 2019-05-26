@@ -7,10 +7,10 @@ export type Interface =
   | 'Website'
   | 'Webapp'
 
-export type Device = {
-  webview: boolean,
-  webviewPhone: boolean,
-  webviewTablet: boolean,
-  webviewAndroid: boolean,
-  webviewIOS: boolean,
-}
+export type Device = {|
+  +webview: boolean,
+  +webviewPhone: boolean,
+  +webviewTablet: boolean,
+  +webviewAndroid: boolean,
+  +webviewIOS: boolean,
+|}

@@ -9,11 +9,7 @@ export const request = (url, params) => (
     url,
     body: params || null,
     method: (params ? 'POST' : 'GET'),
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    },
-    withCredentials: true,
+    withCredentials: false,
     responseType: 'json',
     createXHR: () => new XHR(),
     crossDomain: true
