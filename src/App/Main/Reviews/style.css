@@ -1,3 +1,35 @@
 .wrapper {
 
+  .wrapperReviews {
+
+    .review {
+      border-top: solid 1px #e1e1e1;
+      padding: 30px 0;
+
+      .sticker, .author, .time {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .sticker {
+        background-color: #fef2c0;
+        border-radius: 8px;
+        font-size: 1.5rem;
+        margin-right: 15px;
+        padding: 10px;
+        text-align: center;
+        width: 25px;
+      }
+
+      .author {
+        margin-right: 5px;
+      }
+
+      .time {
+        color: grey;
+        position: relative;
+        top: 2px;
+      }
+    }
+  }
 }

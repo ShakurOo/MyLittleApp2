@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
 import { onGetReview } from 'store/actions'
-import { getDevice } from 'store/selectors'
+import { getReviewsList } from 'store/selectors'
 
 const mapStateToProps = state => ({
-  device: getDevice(state)
+  reviews: getReviewsList(state)
 })
 
 const mapDispatchToProps = ({

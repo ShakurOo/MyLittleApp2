@@ -1,45 +1,53 @@
 // @flow
-import React from 'react'
-// import type { Device } from 'types'
+import React, { Component } from 'react'
+import type { Reviews as ReviewsType } from 'types'
 import withConnect from './connector'
 import style from './style'
-
-type Review = any
-
-type ReviewsType = Array<Review>;
 
 type Props = {|
   +reviews: ReviewsType,
   +onGetReview: () => void
 |}
+class Reviews extends Component<Props> {
+  static defaultProps = {
+    reviews: []
+  }
 
-const Reviews = ({ reviews, onGetReview }: Props) => (
-  <div className={style.wrapper}>
-    <h1>Reviews list</h1>
-    <p>
-      <strong>The inital reviews comes from reducer</strong> where the data is static. However, <strong>the button bellow triggers a XHR call which returns a new review</strong>.
-      In other words, each time the button is clicked, a new dynamic review aggregate the existing reviews list.
-    </p>
-    <br />
+  render () {
+    const { reviews, onGetReview } = this.props
 
-    <ul>
-      { reviews.map((review: Review, i: number) => (
-        <li key={i}>
-          { review.name }
-        </li>
-      ))}
-    </ul>
+    return (
+      <div className={style.wrapper}>
+        <h1>Reviews list</h1>
+        <p>
+          <strong>The inital reviews comes from reducer</strong> where the data is static. However, <strong>the button bellow triggers a XHR call which returns a new review</strong>.
+          In other words, each time the button is clicked, a new dynamic review aggregate the existing reviews list.
+        </p>
+        <br />
 
-    <div className={style.wrapperLoadMore}>
-      <button onClick={onGetReview} type='button'>
-        Load additional review
-      </button>
-    </div>
-  </div>
-)
+        <div className={style.wrapperReviews}>
+          { reviews
+            .filter(review => !review.isPrivate)
+            .map(({ author, time, text }: Review, i: number) => (
+              <section key={`${time}-${i}`} className={style.review}>
+                <span className={style.sticker}>
+                  { i + 1 }
+                </span>
+                <h2 className={style.author}>{ author || 'Unknown' }</h2>
+                <p className={style.time}>at: { time }</p>
+                <p dangerouslySetInnerHTML={{ __html: text }} />
+              </section>
+            ))}
+        </div>
 
-Reviews.defaultProps = {
-  reviews: []
+        <div className={style.wrapperLoadMore}>
+          <button onClick={onGetReview} type='button'>
+            Load additional review
+          </button>
+        </div>
+      </div>
+    )
+  }
 }
 
 export default withConnect(Reviews)
