@@ -32,8 +32,9 @@ export default class Chunk extends PureComponent<Props, State> {
     this.props.load()
       .then(component => {
         setTimeout(() => {
+          /* Simulation loading */
           this.setState({ component: component.default || component })
-        }, 1000)
+        }, Math.floor(Math.random() * 900) + 100)
       })
   }
 

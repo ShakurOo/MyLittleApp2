@@ -1,11 +1,11 @@
 import React, { lazy, Suspense } from 'react'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import Chunk from 'components/Chunk'
-import Home from './Home'
 import Footer from './Footer'
 import style from './style.css'
 
 const Header = lazy(() => import(/* webpackChunkName: "header" */ './Header'))
+const loadHomePage = () => import(/* webpackChunkName: "home-page" */ './Home')
 const loadReviewsPage = () => import(/* webpackChunkName: "reviews-page" */ './Reviews')
 
 // This show case how you can access routing info in your component
@@ -23,7 +23,9 @@ const Main = () => (
         <Route
           exact
           path='/'
-          component={Home}
+          component={props => (
+            <Chunk {...props} load={loadHomePage} />
+          )}
         />
         <Route
           path='/reviews'
@@ -33,7 +35,9 @@ const Main = () => (
         />
         <Route
           path='*'
-          component={Home}
+          component={props => (
+            <Chunk {...props} load={loadHomePage} />
+          )}
         />
       </Switch>
     </div>
