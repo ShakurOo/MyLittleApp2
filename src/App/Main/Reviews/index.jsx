@@ -23,6 +23,9 @@ class Reviews extends Component<Props> {
           <strong>The inital reviews comes from reducer</strong> where the data is static. However, <strong>the button bellow triggers a XHR call which returns a new review</strong>.
           In other words, each time the button is clicked, a new dynamic review aggregate the existing reviews list.
         </p>
+        <p className={style.limit}>
+          Reviews quantity limit: <span>10</span>
+        </p>
         <br />
 
         <div className={style.wrapperReviews}>
@@ -40,11 +43,13 @@ class Reviews extends Component<Props> {
             ))}
         </div>
 
-        <div className={style.wrapperLoadMore}>
-          <button onClick={onGetReview} type='button'>
-            Load additional review
-          </button>
-        </div>
+        { reviews.length <= 10 && (
+          <div className={style.wrapperLoadMore}>
+            <button onClick={onGetReview} type='button'>
+              Load additional review
+            </button>
+          </div>
+        )}
       </div>
     )
   }

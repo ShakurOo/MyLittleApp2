@@ -1,5 +1,15 @@
 .wrapper {
 
+  .limit {
+    margin-top: 30px;
+    margin-bottom: 0;
+    text-align: right;
+
+    span {
+      color: #ff7c81;
+    }
+  }
+
   .wrapperReviews {
 
     .review {
