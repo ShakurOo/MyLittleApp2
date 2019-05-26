@@ -20,7 +20,7 @@ class Header extends PureComponent {
           </li>
         </ul>
       </header>
-    );
+    )
   }
 }
 

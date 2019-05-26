@@ -18,7 +18,7 @@ const APP_ENTRY_POINT = `${JS_SOURCE}/loadApp`
 
 const webpackDevOutput = {
   publicPath: config.get('publicPath'),
-  filename: 'bundle.js',
+  filename: 'bundle.js'
 }
 
 // webpack 4 mode
@@ -42,7 +42,7 @@ webpackConfig.devServer = {
   noInfo: true,
   quiet: true,
   open: true,
-  stats: 'errors-only',
+  stats: 'errors-only'
 }
 
 // This is your testing container, we did
@@ -56,7 +56,7 @@ const htmlPlugins = html.map(
     title: page.title,
     template: `src/${page.template}`,
     inject: 'body',
-    filename: page.filename,
+    filename: page.filename
   })
 )
 
@@ -64,16 +64,16 @@ webpackConfig.plugins.push(
   new DashboardPlugin({
     port: process.env.DASHBOARD_PORT,
     minified: false,
-    gzip: false,
+    gzip: false
   }),
   new webpack.LoaderOptionsPlugin({
-    debug: true,
+    debug: true
   }),
   // Since we specify --hot mode, we don’t need to add this plugin
   // It is mutually exclusive with the --hot option.
   // new webpack.HotModuleReplacementPlugin(),
   new webpack.DefinePlugin({
-    __CONFIG__: JSON.stringify(config.get('app')),
+    __CONFIG__: JSON.stringify(config.get('app'))
   })
 )
 
@@ -90,12 +90,12 @@ if (config.get('browserSync.active') === true) {
 
         // Prevents BrowserSync from automatically opening up the app in your browser
         open: false,
-        reloadDelay: 2500,
+        reloadDelay: 2500
       },
       {
         // Disable BrowserSync's browser reload/asset injections feature because
         // Webpack Dev Server handles this for us already
-        reload: false,
+        reload: false
       }
     )
   )
@@ -105,7 +105,7 @@ webpackConfig.module.rules = webpackConfig.module.rules.concat({
   test: /\.css$/,
   use: [
     {
-      loader: 'style-loader',
+      loader: 'style-loader'
     },
     {
       loader: 'css-loader',
@@ -113,8 +113,8 @@ webpackConfig.module.rules = webpackConfig.module.rules.concat({
         sourceMap: true,
         importLoaders: 1,
         modules: true,
-        localIdentName: '[name]__[local]_[hash:base64]',
-      },
+        localIdentName: '[name]__[local]_[hash:base64]'
+      }
     },
     {
       loader: 'postcss-loader',
@@ -128,12 +128,12 @@ webpackConfig.module.rules = webpackConfig.module.rules.concat({
           // https://github.com/csstools/postcss-preset-env
           postcssPresetEnv({
             browsers: ['last 2 versions', 'ie >= 9'],
-            compress: true,
-          }),
-        ],
-      },
-    },
-  ],
+            compress: true
+          })
+        ]
+      }
+    }
+  ]
 })
 
 webpackConfig.plugins = webpackConfig.plugins.concat(htmlPlugins)
@@ -145,7 +145,7 @@ webpackConfig.entry = [
   'babel-polyfill',
   `webpack-dev-server/client?http://${HOST}:${PORT}`,
   'webpack/hot/only-dev-server',
-  `./${APP_ENTRY_POINT}`,
+  `./${APP_ENTRY_POINT}`
 ]
 
 export default webpackConfig

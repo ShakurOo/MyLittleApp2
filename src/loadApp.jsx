@@ -4,7 +4,6 @@ import { store } from './store'
 import App from './App'
 
 const loadApplication = () => {
-
   const DOMElement = window.document.getElementById('wrapper')
 
   const render = Application => {
