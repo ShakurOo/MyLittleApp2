@@ -1,0 +1,9 @@
+.wrapper {
+
+  pre {
+    background-color: #e1e1e1;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 15px 20px;
+  }
+}

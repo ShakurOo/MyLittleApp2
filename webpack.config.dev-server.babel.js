@@ -1,8 +1,8 @@
-import config from 'config'
 import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import DashboardPlugin from 'webpack-dashboard/plugin'
 import precss from 'precss'
+import config from 'config'
 import postcssPresetEnv from 'postcss-preset-env'
 
 import webpackConfig, { JS_SOURCE } from './webpack.config.common'
@@ -14,7 +14,7 @@ require('dotenv').config({ silent: true })
 
 const HOST = process.env.HOST || config.get('host') || '0.0.0.0'
 const PORT = process.env.PORT || config.get('port') || '8080'
-const APP_ENTRY_POINT = `${JS_SOURCE}/main`
+const APP_ENTRY_POINT = `${JS_SOURCE}/loadApp`
 
 const webpackDevOutput = {
   publicPath: config.get('publicPath'),
@@ -54,7 +54,7 @@ const html = config.get('html')
 const htmlPlugins = html.map(
   (page) => new HtmlWebpackPlugin({
     title: page.title,
-    template: `src/assets/template/${page.template}`,
+    template: `src/${page.template}`,
     inject: 'body',
     filename: page.filename,
   })

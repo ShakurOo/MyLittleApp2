@@ -1,0 +1,28 @@
+@mixin media-queries;
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
+html {
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 22px;
+}
+
+body {
+  position: relative;
+  color: var(--default-font-color);
+  overflow-x: hidden;
+}
+
+:global(#wrapper) {
+    margin: 0 auto;
+    min-width: 970px;
+    max-width: 1220px;
+    _width: 991px;
+    box-sizing: border-box;
+}
