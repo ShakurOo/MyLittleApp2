@@ -13,7 +13,7 @@ const appicationEpic: Epic = (
   ofType(GET_DEVICE),
   take(1),
   tap((action: GetDeviceAction) => {
-    console.log('EPIC APPLICATION ', action)
+    console.log('EPIC GET_DEVICE', action)
   }),
   switchMap((action: GetDeviceAction) => of(onSetDevice(getDeviceInfo())))
 )

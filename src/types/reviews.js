@@ -3,14 +3,10 @@
 type Confidentiality = 'public' | 'private'
 
 export type Review = {|
-  +amount: number,
-  author: ?string,
-  +format: string,
+  +author: ?string,
   +isPrivate: boolean,
-  +number: number,
   +text: string,
   +time: string,
-  +type: string
 |}
 
 export type ReviewForm = {|

@@ -1,7 +1,8 @@
 // @flow
 import type { Action } from 'store'
 import type { Review } from 'types'
-import { REVIEW_FETCHED } from '../actions'
+import { isActionType } from 'helpers/redux'
+import { REVIEW_ADDED, REVIEW_FETCHED } from '../actions'
 
 export type ReviewsState = {|
   +list: ?Array<Review>
@@ -41,28 +42,39 @@ const initialState = {
 }
 
 export default (state: ReviewsState = initialState, action: Action): ReviewsState => {
-  if (action.type === REVIEW_FETCHED) {
+  if (isActionType(REVIEW_FETCHED, action)) {
     /* eslint-disable camelcase */
-    const {
-      amount, format, number, text_out, time, type
-    } = action.payload.review
+    const { text_out, time } = action.payload.review
     const newState = {
       ...state,
       list: [
         ...state.list,
         {
           author: null,
-          amount,
-          format,
           isPrivate: false,
-          number,
           text: text_out,
-          time,
-          type
+          time
         }
       ]
     }
+
     return newState
+  }
+
+  if (isActionType(REVIEW_ADDED, action)) {
+    /* eslint-disable camelcase */
+    const {
+      confidentiality, username, review: text
+    }: ReviewForm = action.payload.reviewForm
+
+    const review: Review = {
+      author: username,
+      isPrivate: (confidentiality === 'private'),
+      text,
+      time: new Date().toLocaleTimeString()
+    }
+
+    return { ...state, list: [ ...state.list, review ] }
   }
 
   return state

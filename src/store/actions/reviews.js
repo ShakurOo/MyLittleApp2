@@ -70,3 +70,18 @@ export const onReviewAddStarted: ReviewAddStarted = reviewForm => ({
   type: 'REVIEW_ADD_STARTED',
   payload: { reviewForm }
 })
+
+// /////////////////
+
+export type ReviewAddedAction = {|
+  +type: 'REVIEW_ADDED',
+  +payload: { reviewForm: ReviewForm }
+|}
+
+export const REVIEW_ADDED: ActionType = 'REVIEW_ADDED'
+
+type ReviewAdded = () => ReviewAddedAction
+export const onReviewAdded: ReviewAdded = reviewForm => ({
+  type: 'REVIEW_ADDED',
+  payload: { reviewForm }
+})

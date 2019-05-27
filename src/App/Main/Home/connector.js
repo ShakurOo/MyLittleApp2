@@ -7,7 +7,10 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = ({
-  onGetDevice
+  onGetDevice: (...args) => {
+    console.log('ACTION GET_DEVICE DISPATCHED ...')
+    return onGetDevice(...args)
+  }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)

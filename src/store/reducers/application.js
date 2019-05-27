@@ -1,6 +1,7 @@
 // @flow
 import type { Action } from 'store'
 import type { Device } from 'types'
+import { isActionType } from 'helpers/redux'
 import { SET_DEVICE } from '../actions'
 
 export type ApplicationState = {|
@@ -17,9 +18,9 @@ const initialState = {
 }
 
 export default (state: ApplicationState = initialState, action: Action): ApplicationState => {
-  if (action.type === SET_DEVICE) {
+  if (isActionType(SET_DEVICE, action)) {
     const newState = { ...state, device: action.payload.device }
-    console.log('REDUCER APPLICATION ', action)
+    console.log('REDUCER SET_DEVICE ', action)
     return newState
   }
 

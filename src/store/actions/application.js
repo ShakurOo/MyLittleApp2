@@ -10,10 +10,13 @@ export type SetDeviceAction = {|
 export const SET_DEVICE: ActionType = 'SET_DEVICE'
 
 type SetDevice = Device => SetDeviceAction
-export const onSetDevice: SetDevice = device => ({
-  type: 'SET_DEVICE',
-  payload: { device }
-})
+export const onSetDevice: SetDevice = device => {
+  console.log('ACTION SET_DEVICE DISPATCHED ...')
+  return ({
+    type: 'SET_DEVICE',
+    payload: { device }
+  })
+}
 
 // /////////////////
 

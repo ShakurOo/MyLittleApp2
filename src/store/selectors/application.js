@@ -8,7 +8,7 @@ const getApplication = (state: State): ApplicationState => state.application
 export const getDevice = createSelector(
   getApplication,
   (state): ApplicationState => {
-    console.log('SELECTOR GET DEVICE', state.device)
+    console.log('SELECTOR GET_DEVICE', state.device)
     return state.device
   }
 )
