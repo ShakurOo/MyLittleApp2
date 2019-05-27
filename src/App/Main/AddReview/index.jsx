@@ -5,7 +5,7 @@ import style from './style'
 import withConnect from './connector'
 
 type Props = {|
-  +onValidReview: () => Review
+  +onValidFormReview: () => Review
 |}
 
 type State = {|
@@ -36,9 +36,9 @@ class AddReview extends Component<Props, State> {
 
   onSubmit = (event: Event): void => {
     event.preventDefault()
-    console.log('onSubmit', this.state.formValues)
 
-    //this.props.onValidReview()
+    // Prevent script injection
+    this.props.onValidFormReview(this.state.formValues)
   }
 
   onConfidentialityChange = (event: Event): void => {

@@ -1,9 +1,9 @@
 // @flow
 import type { ActionType } from 'store'
-import type { Review } from 'types'
+import type { Review, ReviewForm } from 'types'
 
 export type GetReviewAction = {|
-  +type: 'GET_DEVICE'
+  +type: 'GET_REVIEW'
 |}
 
 export const GET_REVIEW: ActionType = 'GET_REVIEW'
@@ -45,7 +45,7 @@ export const onReviewFetchError: ReviewFetchError = message => ({
 
 export type ReviewFetchedAction = {|
   +type: 'REVIEW_FETCHED',
-  +payload: {| +review: Review |}
+  +payload: { +review: Review }
 |}
 
 export const REVIEW_FETCHED: ActionType = 'REVIEW_FETCHED'
@@ -54,4 +54,19 @@ type ReviewFetched = () => ReviewFetchedAction
 export const onReviewFetched: ReviewFetched = review => ({
   type: 'REVIEW_FETCHED',
   payload: { review }
+})
+
+// /////////////////
+
+export type ReviewAddStartedAction = {|
+  +type: 'REVIEW_ADD_STARTED',
+  +payload: { reviewForm: ReviewForm }
+|}
+
+export const REVIEW_ADD_STARTED: ActionType = 'REVIEW_ADD_STARTED'
+
+type ReviewAddStarted = () => ReviewAddStartedAction
+export const onReviewAddStarted: ReviewAddStarted = reviewForm => ({
+  type: 'REVIEW_ADD_STARTED',
+  payload: { reviewForm }
 })

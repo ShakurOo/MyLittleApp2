@@ -8,6 +8,7 @@ import reviews, { type ReviewsState } from './reducers/reviews'
 import type {
   GetDeviceAction,
   GetReviewAction,
+  ReviewAddStartedAction,
   ReviewFetchedAction,
   ReviewFetchErrorAction,
   ReviewFetchStartedAction,
@@ -22,6 +23,7 @@ export type State = {
 export type Action = GetDeviceAction
 | SetDeviceAction
 | GetReviewAction
+| ReviewAddStartedAction
 | ReviewFetchedAction
 | ReviewFetchErrorAction
 | ReviewFetchStartedAction
