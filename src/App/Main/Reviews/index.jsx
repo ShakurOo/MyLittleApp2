@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import type { Reviews as ReviewsType } from 'types'
 import withConnect from './connector'
-import style from './style'
+import style from './style.css'
 
 const scrollToBottomPage = () => { window.scrollTo(0, document.body.scrollHeight) }
 

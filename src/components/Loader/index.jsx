@@ -1,10 +1,10 @@
 import React from 'react'
 import LoaderIMG from './assets/loader.gif'
-import style from './style'
+import style from './style.css'
 
 const Loader = () => (
   <div className={style.wrapper}>
-    <img src={LoaderIMG} alt='Loader' />
+    { (typeof LoaderIMG !== 'undefined') && <img src={LoaderIMG} alt='Loader' /> }
   </div>
 )
 

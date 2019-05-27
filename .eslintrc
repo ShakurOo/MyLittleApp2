@@ -16,7 +16,25 @@
   },
   "globals": {
     "window": false,
-    "__CONFIG__": true,
-    "__ENV__": true
+    "global": false,
+    "require": false,
+    "expect": false,
+    "shallow": false,
+    "render": false,
+    "mount": false,
+    "toJson": false,
+    "gen": false,
+    "check": false,
+    "shallowSnapshot": false,
+    "SyntheticEvent": false,
+    "TimeoutID": false,
+    "location": false,
+    "jest": false,
+    "nock": false,
+    "API_URI": false,
+    "API_URI2": false,
+    "__PRODUCTION__": false,
+    "__VERSION__": false,
+    "__RAVEN__": false
   }
 }

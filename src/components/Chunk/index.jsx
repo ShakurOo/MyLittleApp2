@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent, type Element, type ComponentType } from 'react'
 import Loader from '../Loader'
-import style from './style'
+import style from './style.css'
 
 type Props = {
   load: () => Promise<*>,
