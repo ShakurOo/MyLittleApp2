@@ -40,12 +40,20 @@
 
       .author {
         margin-right: 5px;
+
+        &::first-letter {
+          text-transform: capitalize;
+        }
       }
 
       .time {
         color: grey;
         position: relative;
         top: 2px;
+      }
+
+      .review::first-letter {
+        text-transform: capitalize;
       }
     }
   }

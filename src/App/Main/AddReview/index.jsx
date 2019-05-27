@@ -79,10 +79,17 @@ class AddReview extends Component<Props, State> {
   }
 
   render () {
-    const { formValues: { confidentiality, username, review }, isValidForm } = this.state
+    const {
+      formValues: { confidentiality, username, review }, isValidForm
+    } = this.state
     return (
       <div className={style.wrapper}>
         <h1>Add your review Cowboy</h1>
+        <p>This page allows you adding a review.</p>
+
+        <h3>What happened when you clicks on SUBMIT ?</h3>
+        <p>The form values is passed through an action and intercepted by the <strong>reviews epic</strong> which dispatch another action depending on cases.</p>
+        <p>For our case, this epic dispatch an action including the cleaned form values. This action is intercepted by the <strong>reviews reducer</strong> and this reducer update the store by adding your new review.</p>
 
         <form name='addReview' onSubmit={this.onSubmit}>
           <input

@@ -1,13 +1,16 @@
 .wrapper {
+  form {
+    margin-top: 60px;
 
-  .wrapperConfidentiality {
-    margin-bottom: 25px;
-
-    label {
-      margin-left: 5px;
-      margin-right: 15px;
-      position: relative;
-      top: 2px;
+    .wrapperConfidentiality {
+      margin-bottom: 25px;
+  
+      label {
+        margin-left: 5px;
+        margin-right: 15px;
+        position: relative;
+        top: 2px;
+      }
     }
   }
 } 

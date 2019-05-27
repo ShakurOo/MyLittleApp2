@@ -57,7 +57,10 @@ class Reviews extends Component<Props> {
                 </span>
                 <h2 className={style.author}>{ author || 'Unknown' }</h2>
                 <p className={style.time}>at: { time }</p>
-                <p dangerouslySetInnerHTML={{ __html: text }} />
+                <p
+                  className={style.review}
+                  dangerouslySetInnerHTML={{ __html: text }}
+                />
               </section>
             ))}
         </div>
