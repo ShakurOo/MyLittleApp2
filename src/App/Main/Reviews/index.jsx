@@ -31,10 +31,14 @@ class Reviews extends Component<Props> {
     return (
       <div className={style.wrapper}>
         <h1>Reviews list</h1>
+        <p>The list of available reviews</p>
+
+        <h3>What happened when you clicks on LOAD MORE REVIEW ?</h3>
         <p className={style.head}>
-          <strong>The inital reviews comes from reducer</strong> where the data is static. However, <strong>the button bellow triggers a XHR call which returns a new review</strong>.
+          The inital reviews comes from the initial state of the <strong>reviews reducer</strong> (mock). However, <strong>this button triggers a XHR call which returns a new review</strong>.
           In other words, each time the button is clicked, a new dynamic review aggregate the existing reviews list.
         </p>
+
         <button
           type='button'
           className='light'
@@ -71,7 +75,7 @@ class Reviews extends Component<Props> {
               onClick={onGetReview}
               type='button'
             >
-              Load additional review
+              Load more review
             </button>
 
             <button

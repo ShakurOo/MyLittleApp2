@@ -88,8 +88,8 @@ class AddReview extends Component<Props, State> {
         <p>This page allows you adding a review.</p>
 
         <h3>What happened when you clicks on SUBMIT ?</h3>
-        <p>The form values is passed through an action and intercepted by the <strong>reviews epic</strong> which dispatch another action depending on cases.</p>
-        <p>For our case, this epic dispatch an action including the cleaned form values. This action is intercepted by the <strong>reviews reducer</strong> and this reducer update the store by adding your new review.</p>
+        <p>The form values is passed through an action and intercepted by the <strong>reviews epic</strong> which dispatch another action depending on specific statements.</p>
+        <p>For our case, this epic dispatch an <strong>action including the cleaned form values</strong>. This action is intercepted by the <strong>reviews reducer</strong> and this reducer update the store by adding your new review.</p>
 
         <form name='addReview' onSubmit={this.onSubmit}>
           <input
