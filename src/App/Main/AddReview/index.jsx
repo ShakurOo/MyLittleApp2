@@ -10,7 +10,7 @@ type Props = {|
 
 type State = {|
   +formValues: ReviewForm,
-  +isFormValid: boolean
+  +isValidForm: boolean
 |}
 
 class AddReview extends Component<Props, State> {
@@ -23,9 +23,16 @@ class AddReview extends Component<Props, State> {
         username: '',
         review: ''
       },
-      isFormValid: false
+      isValidForm: false
     }
   }
+
+  isValidForm = ({ review, username }): boolean => Boolean(
+    review.length &&
+    review.length >= 50 &&
+    username.length &&
+    username.length >= 5
+  )
 
   onSubmit = (event: Event): void => {
     event.preventDefault()
@@ -46,35 +53,33 @@ class AddReview extends Component<Props, State> {
   onReviewChange = (event: Event): void => {
     const review: string = event.target.value
     const { formValues: { username } } = this.state
+    const isValidForm = this.isValidForm({ username, review })
 
     this.setState({
       formValues: {
         ...this.state.formValues,
         review
       },
-      isFormValid: Boolean(
-        username.length && review.length && review.length >= 50
-      )
+      isValidForm
     })
   }
 
   onUsernameChange = (event: Event): void => {
     const username: string = event.target.value
     const { formValues: { review } } = this.state
+    const isValidForm = this.isValidForm({ username, review })
 
     this.setState({
       formValues: {
         ...this.state.formValues,
         username
       },
-      isFormValid: Boolean(
-        review.length && username.length && username.length >= 5
-      )
+      isValidForm
     })
   }
 
   render () {
-    const { formValues: { confidentiality, username, review }, isFormValid } = this.state
+    const { formValues: { confidentiality, username, review }, isValidForm } = this.state
     return (
       <div className={style.wrapper}>
         <h1>Add your review Cowboy</h1>
@@ -112,7 +117,7 @@ class AddReview extends Component<Props, State> {
             <label htmlFor='private'>Private</label>
           </div>
 
-          <button type='submit' disabled={!isFormValid}>
+          <button type='submit' disabled={!isValidForm}>
             Confirm my review
           </button>
         </form>
