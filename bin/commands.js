@@ -14,7 +14,7 @@ const option = process.argv[2];
 // Please look at package.json -> "scripts" section
 switch (option) {
   case 'lint':
-    shell.exec('cross-env eslint --fix src/js/** --format node_modules/eslint-friendly-formatter . --ext .js --ext .jsx  --cache; exit 0');
+    shell.exec('eslint src --ext .jsx --ext .js --ignore-path .gitignore');
     break;
   case 'dev':
     shell.exec(`cross-env webpack-dev-server --config webpack.config.dev-server.babel.js --hot --progress --no-info --inline --colors`);

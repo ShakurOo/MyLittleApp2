@@ -1,0 +1,19 @@
+@mixin media-queries;
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+:global(#wrapper) {
+  margin: 0 auto;
+  min-width: 970px;
+  max-width: 1220px;
+  _width: 991px;
+  box-sizing: border-box;
+}

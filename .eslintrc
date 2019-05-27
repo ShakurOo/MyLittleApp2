@@ -4,39 +4,37 @@
     "commonjs": true,
     "es6": true
   },
-  "globals": {
-    "__CONFIG__": true,
-    "__ENV__": true
-  },
-  "extends": ["airbnb"],
   "plugins": ["flowtype", "react"],
   "parser": "babel-eslint",
-  "parserOptions": {
-    "ecmaFeatures": {
-      // Enabled object spread
-      "experimentalObjectRestSpread": true
-    }
-  },
-  // Rule changes from Airbnb's eslint config
+  "extends": [
+    "plugin:flowtype/recommended",
+    "standard",
+    "standard-jsx"
+  ],
   "rules": {
-    "import/no-unresolved": 0,
-    "new-cap": 0,
-    "semi": 0,
-    "global-require": 0,
-    "no-underscore-dangle": 0,
-    "arrow-body-style": 0,
-    "no-console": 0,
-    "react/forbid-prop-types": 0,
-    "jsx-a11y/href-no-hash": 0,
-    "import/prefer-default-export": 0,
-    "react/prop-types": 0,
-    "react/jsx-filename-extension": 0,
-    "comma-dangle": [2, "always-multiline"],
-    "arrow-parens": ["warn", "always"],
-    "jsx-a11y/anchor-is-valid": [ "error", {
-        "components": [ "Link" ],
-        "specialLink": [ "to", "hrefLeft", "hrefRight" ],
-        "aspects": [ "noHref", "invalidHref", "preferButton" ]
-      }],
+    "react/jsx-no-undef": [2, { "allowGlobals": true }]
+  },
+  "globals": {
+    "window": false,
+    "global": false,
+    "require": false,
+    "expect": false,
+    "shallow": false,
+    "render": false,
+    "mount": false,
+    "toJson": false,
+    "gen": false,
+    "check": false,
+    "shallowSnapshot": false,
+    "SyntheticEvent": false,
+    "TimeoutID": false,
+    "location": false,
+    "jest": false,
+    "nock": false,
+    "API_URI": false,
+    "API_URI2": false,
+    "__PRODUCTION__": false,
+    "__VERSION__": false,
+    "__RAVEN__": false
   }
 }

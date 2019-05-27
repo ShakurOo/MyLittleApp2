@@ -53,22 +53,20 @@ const COMMON_LOADERS = [
               quality: '65-90',
               speed: 4
             }
-          },
+          }
         }
       }
-    ],
+    ]
   }, {
     test: /\.(js|jsx)?$/,
     exclude: /node_modules/,
     loader: 'babel-loader',
     options: {
-      cacheDirectory: true,
+      cacheDirectory: false,
       plugins: [
-        'transform-runtime',
-        'transform-decorators-legacy',
-        'syntax-dynamic-import'
-      ],
-    },
+        'transform-decorators-legacy'
+      ]
+    }
   },
   {
     test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
@@ -81,7 +79,7 @@ const COMMON_LOADERS = [
           name: `${config.get('assetPath')}/[name].[ext]`,
         }
       }
-    ],
+    ]
   },
   {
     test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
@@ -94,7 +92,7 @@ const COMMON_LOADERS = [
           name: `${config.get('assetPath')}/[name].[ext]`,
         }
       }
-    ],
+    ]
   },
   {
     test: /\.[ot]tf(\?v=\d+\.\d+\.\d+)?$/,
@@ -107,7 +105,7 @@ const COMMON_LOADERS = [
           name: `${config.get('assetPath')}/[name].[ext]`,
         }
       }
-    ],
+    ]
   },
   {
     test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
@@ -120,7 +118,7 @@ const COMMON_LOADERS = [
           name: `${config.get('assetPath')}/[name].[ext]`,
         }
       }
-    ],
+    ]
   }
 ];
 
@@ -141,13 +139,22 @@ export default {
     }
   },
   resolve: {
+    alias: {
+      App: path.resolve(__dirname, 'src/App/'),
+      api: path.resolve(__dirname, 'src/api/'),
+      components: path.resolve(__dirname, 'src/components/'),
+      helpers: path.resolve(__dirname, 'src/helpers/'),
+      types: path.resolve(__dirname, 'src/types/'),
+      static: path.resolve(__dirname, 'src/static/'),
+      store: path.resolve(__dirname, 'src/store/'),
+      style: path.resolve(__dirname, 'src/style/')
+    },
     extensions: ['.js', '.jsx', '.css'],
     modules: [
       path.join(__dirname, 'src'),
-      path.join(__dirname, 'assets'),
       path.join(__dirname, JS_SOURCE),
       "node_modules"
-    ],
+    ]
   },
   plugins: [
     new webpack.IgnorePlugin(/vertx/), // https://github.com/webpack/webpack/issues/353
@@ -167,5 +174,5 @@ export default {
     fs:'{}',
     tls:'{}',
     net:'{}'
-  },
+  }
 };

@@ -3,8 +3,8 @@
   "host": "0.0.0.0",
   "port": "8080",
   "publicPath": "/",
-  "assetPath": "assets",
-  "jsSourcePath": "src/js",
+  "assetPath": "static",
+  "jsSourcePath": "src",
   "optimization": {
     "analyzeMode": false,
     "analyze": {
@@ -18,8 +18,8 @@
   "html": [
     {
 			"name": "homepage",
-      "title": "Everything is Awesome",
-      "template": "_default.html",
+      "title": "MyLittleApp",
+      "template": "index.html",
       "filename": "index.html"
     }
   ],
