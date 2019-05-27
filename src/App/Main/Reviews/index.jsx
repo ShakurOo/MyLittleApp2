@@ -5,6 +5,8 @@ import type { Reviews as ReviewsType } from 'types'
 import withConnect from './connector'
 import style from './style'
 
+const scrollToBottomPage = () => { window.scrollTo(0, document.body.scrollHeight) }
+
 type Props = {|
   +reviews: ReviewsType,
   +onGetReview: () => void
@@ -12,6 +14,15 @@ type Props = {|
 class Reviews extends Component<Props> {
   static defaultProps = {
     reviews: []
+  }
+
+  componentDidMount () {
+    const { history, location } = this.props
+
+    if (location.search.includes('newReview')) {
+      scrollToBottomPage()
+      history.replace({ search: '' })
+    }
   }
 
   render () {
