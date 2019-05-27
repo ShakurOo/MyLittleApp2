@@ -7,13 +7,19 @@ button {
   font-size: 1rem;
   padding: 10px 15px;
 
-  a {
-    color: inherit;
-    text-decoration: none;
+  &[disabled] {
+    background-color: #e1e1e1;
+    cursor: default;
+    pointer-events: none;
   }
 
   &:hover {
     background-color: #ff5057;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 }
 

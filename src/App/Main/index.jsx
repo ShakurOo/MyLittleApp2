@@ -7,6 +7,7 @@ import style from './style.css'
 const Header = lazy(() => import(/* webpackChunkName: "header" */ './Header'))
 const loadHomePage = () => import(/* webpackChunkName: "home-page" */ './Home')
 const loadReviewsPage = () => import(/* webpackChunkName: "reviews-page" */ './Reviews')
+const loadAddReviewPage = () => import(/* webpackChunkName: "add-review-page" */ './AddReview')
 
 // This show case how you can access routing info in your component
 const HeaderWithRouter = withRouter((props) => (
@@ -31,6 +32,12 @@ const Main = () => (
           path='/reviews'
           component={props => (
             <Chunk {...props} load={loadReviewsPage} />
+          )}
+        />
+        <Route
+          path='/add-review'
+          component={props => (
+            <Chunk {...props} load={loadAddReviewPage} />
           )}
         />
         <Route

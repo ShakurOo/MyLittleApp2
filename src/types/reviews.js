@@ -1,5 +1,7 @@
 // @flow
 
+type Confidentiality = 'public' | 'private'
+
 export type Review = {|
   +amount: number,
   author: ?string,
@@ -9,4 +11,10 @@ export type Review = {|
   +text: string,
   +time: string,
   +type: string
+|}
+
+export type ReviewForm = {|
+  +username: string,
+  +review: string,
+  +confidentiality: Confidentiality
 |}
