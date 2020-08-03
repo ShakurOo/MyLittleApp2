@@ -1,5 +1,5 @@
 // @flow
-import type { Device, Interface } from 'types'
+import type { Device, Interface } from '@app/types'
 
 /*
 ** Custom prefixes for useragent

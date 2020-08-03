@@ -2,12 +2,12 @@
 import { of } from 'rxjs'
 import { catchError, startWith, switchMap, tap } from 'rxjs/operators'
 import { ofType, type StateObservable } from 'redux-observable'
-import type { ActionsObservable, Epic } from 'store'
-import type { ReviewForm } from 'types'
-import { fetchReviews } from 'api/reviews'
+import { fetchReviews } from '@app/api/reviews'
+import type { ActionsObservable, Epic } from '@app/store'
+import type { ReviewForm } from '@app/types'
+import { isActionType } from '@app/helpers/redux'
+import { scriptHTMLTagRegex } from '@app/helpers/regex'
 import history from '../../hashHistory'
-import { scriptHTMLTagRegex } from 'helpers/regex'
-import { isActionType } from 'helpers/redux'
 import {
   onReviewAdded,
   onReviewFetchStarted,

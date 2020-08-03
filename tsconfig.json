@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "esModuleInterop": true,
+    "jsx": "react",
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "outDir": "./dist/",
+    "paths": {
+      "@app/*": ["src/*"],
+    },
+    "sourceMap": true,
+    "target": "es6"
+  },
+  "include": [
+    "./src/**/*"
+  ]
+}

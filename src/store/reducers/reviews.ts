@@ -1,7 +1,7 @@
 // @flow
-import type { Action } from 'store'
-import type { Review } from 'types'
-import { isActionType } from 'helpers/redux'
+import { isActionType } from '@app/helpers/redux'
+import type { Action } from '@app/store'
+import type { Review } from '@app/types'
 import { REVIEW_ADDED, REVIEW_FETCHED } from '../actions'
 
 export type ReviewsState = {|

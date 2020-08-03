@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react'
-import { type ReviewForm } from 'types'
+import { type ReviewForm } from '@app/types'
 import style from './style.css'
 import withConnect from './connector'
 

@@ -14,4 +14,4 @@ export type {
   Selector,
   State,
   Store
-} from 'store'
+} from '@app/store'

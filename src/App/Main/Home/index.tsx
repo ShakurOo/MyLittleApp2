@@ -27,7 +27,7 @@ const Home = ({ device, onGetDevice }: Props) => (
       <li>The middleware produce a side-effect as trigger a new action including in payload the correct device data</li>
       <li>A reducer catch this action and populate the store</li>
       <li>A selector (getter), detects the change, compute the newest value</li>
-      <li>Finally, the prop is updated, the connected component is rerender through the inner component lifecycle mechanisme</li>
+      <li>Finally, the prop is updated, the connected component is rerendered through the inner component lifecycle mechanisme</li>
     </ul>
 
     <h3>Demo for device prop :</h3>

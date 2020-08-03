@@ -1,6 +1,6 @@
 // @flow
-import type { ActionType } from 'store'
-import type { Device } from 'types'
+import type { ActionType } from '@app/store'
+import type { Device } from '@app/types'
 
 export type SetDeviceAction = {|
   +type: 'SET_DEVICE',

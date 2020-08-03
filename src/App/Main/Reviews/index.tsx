@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import type { Reviews as ReviewsType } from 'types'
+import type { Reviews as ReviewsType } from '@app/types'
 import withConnect from './connector'
 import style from './style.css'
 

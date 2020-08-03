@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react'
 import { Route, Switch, withRouter } from 'react-router-dom'
-import Chunk from 'components/Chunk'
+import Chunk from '@app/components/Chunk'
 import Footer from './Footer'
 import style from './style.css'
 

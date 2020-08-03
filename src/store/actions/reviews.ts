@@ -1,6 +1,6 @@
 // @flow
-import type { ActionType } from 'store'
-import type { Review, ReviewForm } from 'types'
+import type { ActionType } from '@app/store'
+import type { Review, ReviewForm } from '@app/types'
 
 export type GetReviewAction = {|
   +type: 'GET_REVIEW'
