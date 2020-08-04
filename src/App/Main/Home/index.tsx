@@ -1,7 +1,6 @@
-// @flow
 import React from 'react'
 import withConnect from './connector'
-import { Device } from '@app/types'
+import type { Device } from '@app/types'
 import LogoIMG from './assets/logo.png'
 import style from './style.css'
 

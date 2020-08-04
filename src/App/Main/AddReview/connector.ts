@@ -1,4 +1,3 @@
-// @flow
 import { connect } from 'react-redux'
 import { ReviewForm } from '@app/types'
 import { onReviewAddStarted } from '@app/store/actions'

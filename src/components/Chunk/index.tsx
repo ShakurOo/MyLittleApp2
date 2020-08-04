@@ -1,26 +1,30 @@
-// @flow
-import React, { PureComponent, type Element, type ComponentType } from 'react'
+import React, {
+  PureComponent,
+  ComponentType
+} from 'react'
 import Loader from '../Loader'
 import style from './style.css'
 
-type Props = {
-  load: () => Promise<*>,
-  Loader: () => Element<*>
+interface ChunkProps {
+  load: { (): Promise<any> },
+  Loader: { (): JSX.Element }
 }
 
-type State = { component: ComponentType<*> | null }
+interface ChunkState {
+  component: ComponentType<any> | null
+}
 
-export default class Chunk extends PureComponent<Props, State> {
+export default class Chunk extends PureComponent<ChunkProps, ChunkState> {
   static defaultProps = { Loader: Loader }
 
-  constructor (props: Props) {
+  constructor (props: ChunkProps) {
     super(props)
 
     this.state = { component: null }
     this.load()
   }
 
-  componentDidUpdate (prevProps: Props) {
+  componentDidUpdate (prevProps: ChunkProps) {
     if (prevProps.load !== this.props.load) { this.load() }
   }
 

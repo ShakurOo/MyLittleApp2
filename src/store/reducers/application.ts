@@ -1,7 +1,6 @@
-// @flow
 import { isActionType } from '@app/helpers/redux'
 import type { Action } from '@app/store'
-import { Device } from '@app/types'
+import type { Device } from '@app/types'
 import { SET_DEVICE } from '../actions'
 
 export interface ApplicationState {
@@ -10,6 +9,7 @@ export interface ApplicationState {
 
 const initialState = {
   device: {
+    interface: null,
     webview: null,
     webviewAndroid: null,
     webviewIOS: null

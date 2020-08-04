@@ -1,20 +1,21 @@
-// @flow
 import React, { Component } from 'react'
-import { type ReviewForm } from '@app/types'
+import type { Review, ReviewForm } from '@app/types'
 import style from './style.css'
 import withConnect from './connector'
 
-type Props = {
-  +onValidFormReview: () => Review
+interface AddReviewProps {
+  onValidFormReview: {
+    (formValues: ReviewForm): Review
+  }
 }
 
-type State = {
-  +formValues: ReviewForm,
-  +isValidForm: boolean
+interface AddReviewState {
+  formValues: ReviewForm,
+  isValidForm: boolean
 }
 
-class AddReview extends Component<Props, State> {
-  constructor (props: Props) {
+class AddReview extends Component<AddReviewProps, AddReviewState> {
+  constructor (props: AddReviewProps) {
     super(props)
 
     this.state = {
@@ -34,23 +35,24 @@ class AddReview extends Component<Props, State> {
     username.length >= 5
   )
 
-  onSubmit = (event: Event): void => {
+  onSubmit = (event: React.ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault()
 
     // Prevent script injection
     this.props.onValidFormReview(this.state.formValues)
   }
 
-  onConfidentialityChange = (event: Event): void => {
+  onConfidentialityChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const confidentiality: any = event.target.value
     this.setState({
       formValues: {
         ...this.state.formValues,
-        confidentiality: event.target.value
+        confidentiality
       }
     })
   }
 
-  onReviewChange = (event: Event): void => {
+  onReviewChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const review: string = event.target.value
     const { formValues: { username } } = this.state
     const isValidForm = this.isValidForm({ username, review })
@@ -64,7 +66,7 @@ class AddReview extends Component<Props, State> {
     })
   }
 
-  onUsernameChange = (event: Event): void => {
+  onUsernameChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const username: string = event.target.value
     const { formValues: { review } } = this.state
     const isValidForm = this.isValidForm({ username, review })
@@ -80,7 +82,8 @@ class AddReview extends Component<Props, State> {
 
   render () {
     const {
-      formValues: { confidentiality, username, review }, isValidForm
+      formValues: { confidentiality, username, review },
+      isValidForm
     } = this.state
     return (
       <div className={style.wrapper}>

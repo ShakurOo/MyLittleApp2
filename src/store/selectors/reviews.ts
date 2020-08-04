@@ -1,7 +1,6 @@
-// @flow
 import { createSelector } from 'reselect'
 import type { State } from '@app/store'
-import { Reviews } from '@app/types'
+import type { Reviews } from '@app/types'
 import { ReviewsState } from '../reducers/reviews'
 
 const getReviews = (state: State): ReviewsState => state.reviews

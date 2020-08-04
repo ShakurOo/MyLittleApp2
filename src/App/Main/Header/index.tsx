@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react'
+import { RouteComponentProps } from 'react-router'
 import { Link } from 'react-router-dom'
 import helloIMG from './assets/hello-lbc.png'
 import style from './style.css'
 
-class Header extends PureComponent {
+class Header extends PureComponent<RouteComponentProps> {
   render () {
     const { pathname } = this.props.location
 

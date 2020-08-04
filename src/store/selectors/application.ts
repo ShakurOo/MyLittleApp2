@@ -1,7 +1,6 @@
-// @flow
 import { createSelector } from 'reselect'
 import type { State } from '@app/store'
-import { Device } from '@app/types'
+import type { Device } from '@app/types'
 import type { ApplicationState } from '../reducers/application'
 
 const getApplication = (state: State): ApplicationState => state.application

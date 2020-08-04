@@ -1,4 +1,3 @@
-// @flow
 import { Observable, of } from 'rxjs'
 import { catchError, startWith, switchMap, tap } from 'rxjs/operators'
 import { ofType } from 'redux-observable'

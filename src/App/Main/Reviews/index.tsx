@@ -1,7 +1,7 @@
-// @flow
 import React, { Component } from 'react'
-import { RouteComponentProps, Link } from 'react-router-dom'
-import { Review, Reviews as ReviewsType } from '@app/types'
+import { RouteComponentProps } from 'react-router'
+import { Link } from 'react-router-dom'
+import type { Review, Reviews as ReviewsType } from '@app/types'
 import withConnect from './connector'
 import style from './style.css'
 
@@ -9,11 +9,11 @@ const scrollToBottomPage = () => {
   window.scrollTo(0, document.body.scrollHeight)
 }
 
-interface ReviewsProps extends RouteComponentProps {
+interface ReviewsProps {
   reviews: ReviewsType,
   onGetReview: { (): void }
 }
-class Reviews extends Component<ReviewsProps> {
+class Reviews extends Component<RouteComponentProps, ReviewsProps> {
   static defaultProps = {
     reviews: []
   }

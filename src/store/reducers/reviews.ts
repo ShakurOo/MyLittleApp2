@@ -1,7 +1,6 @@
-// @flow
 import { isActionType } from '@app/helpers/redux'
 import type { Action } from '@app/store'
-import { ReviewForm, Review, Reviews } from '@app/types'
+import type { ReviewForm, Review, Reviews } from '@app/types'
 import { REVIEW_ADDED, REVIEW_FETCHED } from '../actions'
 
 export interface ReviewsState {

@@ -1,4 +1,3 @@
-// @flow
 import type { ActionType } from '@app/store'
 import type { Device } from '@app/types'
 
