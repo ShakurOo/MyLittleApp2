@@ -1,7 +1,7 @@
 // @flow
 import { connect } from 'react-redux'
-import { type ReviewForm } from 'types'
-import { onReviewAddStarted } from 'store/actions'
+import { ReviewForm } from '@app/types'
+import { onReviewAddStarted } from '@app/store/actions'
 
 const mapDispatchToProps = ({
   onValidFormReview: (reviewForm: ReviewForm) => onReviewAddStarted(reviewForm)

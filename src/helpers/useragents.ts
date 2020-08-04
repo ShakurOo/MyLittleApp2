@@ -1,4 +1,3 @@
-// @flow
 import type { Device, Interface } from '@app/types'
 
 /*
@@ -102,10 +101,10 @@ const getInterface: GetInterface = (
     : INTERFACE_WEBSITE
 }
 
-type GetDeviceInfo = (?string) => Device
+interface GetDeviceInfo { (userAgent?: string): Device }
 export const getDeviceInfo: GetDeviceInfo = (ua = window.navigator.userAgent) => ({
+  interface: getInterface(ua),
   webview: isWebview(ua),
   webviewAndroid: isAndroidWebview(ua),
-  webviewIOS: isIOSWebview(ua),
-  interface: getInterface(ua)
+  webviewIOS: isIOSWebview(ua)
 })

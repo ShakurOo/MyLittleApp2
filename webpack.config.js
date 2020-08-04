@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+const postcssPresetEnv = require('postcss-preset-env')
 const precss = require('precss')
 
 module.exports = {
@@ -27,8 +28,10 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
+              sourceMap: true,
               importLoaders: 1,
-              modules: true
+              modules: true,
+              localIdentName: '[name]__[local]_[hash:base64]'
             }
           },
           {
@@ -36,7 +39,13 @@ module.exports = {
             ident: 'postcss',
             options: {
               sourceMap: true,
-              plugins: () => [precss()]
+              plugins: () => [
+                precss(),
+                postcssPresetEnv({
+                  browsers: ['last 2 versions', 'ie >= 9'],
+                  compress: true
+                })
+              ]
             }
           }
         ]

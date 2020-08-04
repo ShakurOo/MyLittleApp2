@@ -1,12 +1,12 @@
 // @flow
 import { isActionType } from '@app/helpers/redux'
 import type { Action } from '@app/store'
-import type { Review } from '@app/types'
+import { ReviewForm, Review, Reviews } from '@app/types'
 import { REVIEW_ADDED, REVIEW_FETCHED } from '../actions'
 
-export type ReviewsState = {|
-  +list: ?Array<Review>
-|}
+export interface ReviewsState {
+  list: Reviews
+}
 
 const initialState = {
   list: [{
@@ -64,7 +64,9 @@ export default (state: ReviewsState = initialState, action: Action): ReviewsStat
   if (isActionType(REVIEW_ADDED, action)) {
     /* eslint-disable camelcase */
     const {
-      confidentiality, username, review: text
+      confidentiality,
+      username,
+      review: text
     }: ReviewForm = action.payload.reviewForm
 
     const review: Review = {

@@ -1,15 +1,16 @@
 // @flow
 import React from 'react'
 import withConnect from './connector'
+import { Device } from '@app/types'
 import LogoIMG from './assets/logo.png'
 import style from './style.css'
 
-type Props = {|
-  +device: Device,
-  +onGetDevice: () => void
-|}
+interface HomeProps {
+  device: Device,
+  onGetDevice: { (): void }
+}
 
-const Home = ({ device, onGetDevice }: Props) => (
+const Home: React.SFC<HomeProps> = ({ device, onGetDevice }) => (
   <div className={style.wrapper}>
     <img
       alt='MyLittleApp'

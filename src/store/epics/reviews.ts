@@ -1,27 +1,27 @@
 // @flow
-import { of } from 'rxjs'
+import { Observable, of } from 'rxjs'
 import { catchError, startWith, switchMap, tap } from 'rxjs/operators'
-import { ofType, type StateObservable } from 'redux-observable'
+import { ofType } from 'redux-observable'
 import { fetchReviews } from '@app/api/reviews'
-import type { ActionsObservable, Epic } from '@app/store'
-import type { ReviewForm } from '@app/types'
 import { isActionType } from '@app/helpers/redux'
 import { scriptHTMLTagRegex } from '@app/helpers/regex'
+import type { ActionsObservable, Epic } from '@app/store'
+import type { ReviewForm } from '@app/types'
 import history from '../../hashHistory'
 import {
-  onReviewAdded,
-  onReviewFetchStarted,
-  onReviewFetched,
-  onFetchReviewsErrors,
   GET_REVIEW,
+  GetReviewAction,
   REVIEW_ADD_STARTED,
-  type ReviewAddedAction,
-  type ReviewFetchedAction,
-  type ReviewAddStartedAction,
-  type GetReviewAction
+  ReviewAddStartedAction,
+  ReviewAddedAction,
+  ReviewFetchedAction,
+  onReviewAdded,
+  onReviewFetchError,
+  onReviewFetchStarted,
+  onReviewFetched
 } from '../actions'
 
-const getReviewFromUserForm = (action: ReviewAddStartedAction): Oservable<ReviewAddedAction> => {
+const getReviewFromUserForm = (action: ReviewAddStartedAction): Observable<ReviewAddedAction> => {
   const reviewForm: ReviewForm = action.payload.reviewForm
 
   // Prevent SCRIPT Injection
@@ -43,16 +43,15 @@ const getReviewFromAPI = (): Observable<GetReviewAction | ReviewFetchedAction> =
 }
 
 const reviewsEpic: Epic = (
-  actions$: ActionsObservable,
-  state$: StateObservable
+  actions$: ActionsObservable
 ) => actions$.pipe(
   ofType(GET_REVIEW, REVIEW_ADD_STARTED),
   switchMap((action: GetReviewAction | ReviewAddStartedAction) => (
     (isActionType(GET_REVIEW, action))
       ? getReviewFromAPI()
-      : getReviewFromUserForm(action)
+      : getReviewFromUserForm(action as ReviewAddStartedAction)
   )),
-  catchError(() => of(onFetchReviewsErrors('Unable to fetch reviews')))
+  catchError(() => of(onReviewFetchError('Unable to fetch reviews')))
 
 )
 

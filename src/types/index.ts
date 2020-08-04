@@ -1,4 +1,3 @@
-// @flow
 export * from './device'
 export * from './reviews'
 

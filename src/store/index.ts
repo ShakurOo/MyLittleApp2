@@ -1,10 +1,9 @@
-// @flow
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import { createEpicMiddleware } from 'redux-observable'
 import type { Observable } from 'rxjs'
 import * as api from '../api'
-import application, { type ApplicationState } from './reducers/application'
-import reviews, { type ReviewsState } from './reducers/reviews'
+import application, { ApplicationState } from './reducers/application'
+import reviews, { ReviewsState } from './reducers/reviews'
 import type {
   GetDeviceAction,
   GetReviewAction,
@@ -18,8 +17,8 @@ import type {
 import epics from './epics'
 
 export type State = {
-  +application: ApplicationState,
-  +reviewsState: ReviewsState
+  application: ApplicationState,
+  reviews: ReviewsState
 }
 export type Action = GetDeviceAction
 | SetDeviceAction
@@ -29,13 +28,13 @@ export type Action = GetDeviceAction
 | ReviewFetchedAction
 | ReviewFetchErrorAction
 | ReviewFetchStartedAction
-export type ActionType = string
+export type ActionType = any
 export type ActionCreator<A:Action> = (...any) => A
 export type GetState = () => State
 export type Store = { getState: GetState }
 export type ActionsObservable = Observable<Action>
 export type Epic = (ActionsObservable, State) => ActionsObservable
-export type EpicWithInjection = (ActionsObservable, State, { api?: any }) => ActionsObservable
+export type EpicWithInjection = (ActionsObservable, State, { api: any }) => ActionsObservable
 export type Selector<T> = State => T
 export type Reducer<S> = (S, Action) => S
 

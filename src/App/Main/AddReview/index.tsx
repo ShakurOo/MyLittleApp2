@@ -4,14 +4,14 @@ import { type ReviewForm } from '@app/types'
 import style from './style.css'
 import withConnect from './connector'
 
-type Props = {|
+type Props = {
   +onValidFormReview: () => Review
-|}
+}
 
-type State = {|
+type State = {
   +formValues: ReviewForm,
   +isValidForm: boolean
-|}
+}
 
 class AddReview extends Component<Props, State> {
   constructor (props: Props) {
