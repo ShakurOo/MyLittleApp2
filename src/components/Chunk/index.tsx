@@ -3,7 +3,7 @@ import React, {
   ComponentType
 } from 'react'
 import Loader from '../Loader'
-import style from './style.css'
+import { Wrapper } from './style'
 
 interface ChunkProps {
   load: { (): Promise<any> },
@@ -50,9 +50,9 @@ export default class Chunk extends PureComponent<ChunkProps, ChunkState> {
       ? <Component {...this.props} Loader={null} />
       : (Loader)
         ? (
-          <div className={style.wrapper}>
+          <Wrapper>
             <Loader />
-          </div>
+          </Wrapper>
         )
         : 'Loading'
   }

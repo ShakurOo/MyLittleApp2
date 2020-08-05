@@ -1,5 +1,6 @@
-.wrapper {
+import styled from 'styled-components'
 
+const Wrapper = styled.div`
   .head {
     margin-bottom: 50px;
 
@@ -65,4 +66,6 @@
       margin-right: 15px;
     }
   }
-}
+`
+
+export { Wrapper }

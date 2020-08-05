@@ -1,4 +1,6 @@
-.wrapper {
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
 
   .logo, h1 {
     display: inline-block;
@@ -29,7 +31,7 @@
       text-align: center;
     }
   }
-  
+
   .wrapperResult {
     border-left: solid 1px #e1e1e1;
     padding-left: 40px;
@@ -44,4 +46,6 @@
     margin: 0;
     padding: 15px 20px;
   }
-}
+`
+
+export { Wrapper }

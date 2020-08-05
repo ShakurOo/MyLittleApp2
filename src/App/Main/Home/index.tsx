@@ -2,7 +2,7 @@ import React from 'react'
 import withConnect from './connector'
 import type { Device } from '@app/types'
 import LogoIMG from './assets/logo.png'
-import style from './style.css'
+import { Wrapper } from './style'
 
 interface HomeProps {
   device: Device,
@@ -10,10 +10,10 @@ interface HomeProps {
 }
 
 const Home: React.SFC<HomeProps> = ({ device, onGetDevice }) => (
-  <div className={style.wrapper}>
+  <Wrapper>
     <img
       alt='MyLittleApp'
-      className={style.logo}
+      className='logo'
       src={LogoIMG}
     />
     <h1>Welcome in MyLittleApp</h1>
@@ -31,17 +31,17 @@ const Home: React.SFC<HomeProps> = ({ device, onGetDevice }) => (
     </ul>
 
     <h3>Demo for device prop :</h3>
-    <div className={style.wrapperButton}>
+    <div className='wrapperButton'>
       <button onClick={onGetDevice} type='button'>
         Get Device info
       </button>
       <p>Check the logs in the Console (F12)</p>
     </div>
 
-    <div className={style.wrapperResult}>
-      <pre>{JSON.stringify(device, null, 2) }</pre>
+    <div className='wrapperResult'>
+      <pre>{ JSON.stringify(device, null, 2) }</pre>
     </div>
-  </div>
+  </Wrapper>
 )
 
 export default withConnect(Home)

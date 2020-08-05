@@ -1,11 +1,11 @@
 import React from 'react'
-import LoaderIMG from './assets/loader.gif'
-import style from './style.css'
+import LoaderIcon from './assets/loader.gif'
+import { Wrapper } from './style'
 
 const Loader = () => (
-  <div className={style.wrapper}>
-    { (typeof LoaderIMG !== 'undefined') && <img src={LoaderIMG} alt='Loader' /> }
-  </div>
+  <Wrapper>
+    { LoaderIcon && <img src={LoaderIcon} alt='Loader' /> }
+  </Wrapper>
 )
 
 export default Loader

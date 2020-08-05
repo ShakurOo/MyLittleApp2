@@ -12,9 +12,9 @@ module.exports = {
   devtool: 'source-map',
   module: {
     rules: [
-      { 
+      {
         exclude: /node_modules/,
-        test: /\.ts(x?)$/, 
+        test: /\.ts(x?)$/,
         loader: 'ts-loader'
       },
       {

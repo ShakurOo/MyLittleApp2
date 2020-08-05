@@ -1,11 +1,11 @@
 import React from 'react'
-import style from './style.css'
+import { Wrapper } from './style'
 
 const Footer = () => (
-  <footer className={style.wrapper}>
+  <Wrapper>
     <p>Copyright © 2019 MyLittleApp</p>
-    <p className={style.author}>Kevin Pinto</p>
-  </footer>
+    <p className='author'>Kevin Pinto</p>
+  </Wrapper>
 )
 
 export default Footer

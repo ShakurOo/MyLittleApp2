@@ -3,7 +3,7 @@ import { RouteComponentProps } from 'react-router'
 import { Link } from 'react-router-dom'
 import type { Review, Reviews as ReviewsType } from '@app/types'
 import withConnect from './connector'
-import style from './style.css'
+import { Wrapper } from './style'
 
 const scrollToBottomPage = () => {
   window.scrollTo(0, document.body.scrollHeight)
@@ -31,40 +31,40 @@ class Reviews extends Component<RouteComponentProps, ReviewsProps> {
     const { reviews, onGetReview } = this.props
 
     return (
-      <div className={style.wrapper}>
+      <Wrapper>
         <h1>Reviews list</h1>
         <p>The list of available reviews</p>
 
         <h3>What happened when you clicks on LOAD MORE REVIEW ?</h3>
-        <p className={style.head}>
+        <p className='head'>
           The inital reviews comes from the initial state of the <strong>reviews reducer</strong> (mock). However, <strong>this button triggers a XHR call which returns a new review</strong>.
           In other words, each time the button is clicked, a new dynamic review aggregate the existing reviews list.
         </p>
 
         <button
-          type='button'
           className='light'
+          type='button'
         >
           <Link to='/add-review'>Add your own review</Link>
         </button>
-        <p className={style.limit}>
+        <p className='limit'>
           Reviews quantity limit: <span>10</span>
         </p>
         <br />
         <br />
 
-        <div className={style.wrapperReviews}>
+        <div className='wrapperReviews'>
           { reviews
             .filter(review => !review.isPrivate)
             .map(({ author, time, text }: Review, i: number) => (
-              <section key={`${time}-${i}`} className={style.review}>
-                <span className={style.sticker}>
+              <section key={`${time}-${i}`} className='review'>
+                <span className='sticker'>
                   { i + 1 }
                 </span>
-                <h2 className={style.author}>{ author || 'Unknown' }</h2>
-                <p className={style.time}>at: { time }</p>
+                <h2 className='author'>{ author || 'Unknown' }</h2>
+                <p className='time'>at: { time }</p>
                 <p
-                  className={style.review}
+                  className='review'
                   dangerouslySetInnerHTML={{ __html: text }}
                 />
               </section>
@@ -72,7 +72,7 @@ class Reviews extends Component<RouteComponentProps, ReviewsProps> {
         </div>
 
         { reviews.length <= 10 && (
-          <div className={style.wrapperLoadMore}>
+          <div className='wrapperLoadMore'>
             <button
               onClick={onGetReview}
               type='button'
@@ -88,7 +88,7 @@ class Reviews extends Component<RouteComponentProps, ReviewsProps> {
             </button>
           </div>
         )}
-      </div>
+      </Wrapper>
     )
   }
 }

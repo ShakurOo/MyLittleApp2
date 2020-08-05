@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
 import { RouteComponentProps } from 'react-router'
 import { Link } from 'react-router-dom'
-import helloIMG from './assets/hello-lbc.png'
-import style from './style.css'
+import welcomeImage from './assets/hello-lbc.png'
+import { NavItem, Wrapper } from './style'
 
 class Header extends PureComponent<RouteComponentProps> {
   render () {
@@ -13,22 +13,24 @@ class Header extends PureComponent<RouteComponentProps> {
     const isAddReview = pathname === '/add-review'
 
     return (
-      <header className={style.wrapper}>
-        <div className={style.content}>
-          <ul className={style.nav}>
-            <li className={isHome ? style.active : ''}>
+      <Wrapper>
+        <div className='content'>
+          <ul className='nav'>
+
+            <NavItem isHome={isHome}>
               {isHome ? 'Home' : <Link to='/'>Home</Link>}
-            </li>
-            <li className={isReviews ? style.active : ''}>
+            </NavItem>
+            <NavItem isReviews={isReviews}>
               { isReviews ? 'Reviews' : <Link to='/reviews'>Reviews</Link> }
-            </li>
-            <li className={isAddReview ? style.active : ''}>
+            </NavItem>
+            <NavItem isAddReview={isAddReview}>
               { isAddReview ? 'Add review' : <Link to='/add-review'>Add review</Link> }
-            </li>
+            </NavItem>
           </ul>
-          <img src={helloIMG} alt='Hello LBC' />
+
+          { welcomeImage && <img src={welcomeImage} alt='Hello LBC' /> }
         </div>
-      </header>
+      </Wrapper>
     )
   }
 }

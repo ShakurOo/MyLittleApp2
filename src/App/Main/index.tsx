@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import Chunk from '@app/components/Chunk'
 import Footer from './Footer'
-import style from './style.css'
+import { Wrapper } from './style'
 
 const Header = lazy(() => import(/* webpackChunkName: "header" */ './Header'))
 const loadHomePage = () => import(/* webpackChunkName: "home-page" */ './Home')
@@ -17,9 +17,10 @@ const HeaderWithRouter = withRouter((props) => (
 ))
 
 const Main = () => (
-  <div className={style.wrapper}>
+  <Wrapper>
     <HeaderWithRouter />
-    <div className={style.content}>
+
+    <div>
       <Switch>
         <Route
           exact
@@ -48,8 +49,9 @@ const Main = () => (
         />
       </Switch>
     </div>
+
     <Footer />
-  </div>
+  </Wrapper>
 )
 
 export default Main

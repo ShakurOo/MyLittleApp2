@@ -1,11 +1,13 @@
 import React from 'react'
-import { Router, Route } from 'react-router-dom'
 import { Provider as StoreProvider } from 'react-redux'
-import history from '../hashHistory'
+import { Router, Route } from 'react-router-dom'
 import Main from './Main'
+import { GlobalStyle } from './style'
+import history from '../hashHistory'
 
 const App = ({ store }) => (
   <StoreProvider store={store}>
+    <GlobalStyle />
     <Router history={history}>
       <Route component={Main} />
     </Router>

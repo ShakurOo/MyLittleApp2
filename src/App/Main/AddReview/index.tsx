@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import type { Review, ReviewForm } from '@app/types'
-import style from './style.css'
+import { AddReviewFormWrapper } from './style'
 import withConnect from './connector'
 
 interface AddReviewProps {
@@ -86,7 +86,7 @@ class AddReview extends Component<AddReviewProps, AddReviewState> {
       isValidForm
     } = this.state
     return (
-      <div className={style.wrapper}>
+      <div>
         <h1>Add your review Cowboy</h1>
         <p>This page allows you adding a review.</p>
 
@@ -94,19 +94,24 @@ class AddReview extends Component<AddReviewProps, AddReviewState> {
         <p>The form values is passed through an action and intercepted by the <strong>reviews epic</strong> which dispatch another action depending on specific statements.</p>
         <p>For our case, this epic dispatch an <strong>action including the cleaned form values</strong>. This action is intercepted by the <strong>reviews reducer</strong> and this reducer update the store by adding your new review.</p>
 
-        <form name='addReview' onSubmit={this.onSubmit}>
+        <AddReviewFormWrapper
+          name='addReview'
+          onSubmit={this.onSubmit}
+        >
           <input
             placeholder='Your username ?'
             type='text'
             value={username}
             onChange={this.onUsernameChange}
           />
+
           <textarea
             placeholder='What is your review ?'
             value={review}
             onChange={this.onReviewChange}
           />
-          <div className={style.wrapperConfidentiality}>
+
+          <div className='wrapperConfidentiality'>
             <input
               checked={confidentiality === 'public'}
               id='public'
@@ -130,7 +135,7 @@ class AddReview extends Component<AddReviewProps, AddReviewState> {
           <button type='submit' disabled={!isValidForm}>
             Confirm my review
           </button>
-        </form>
+        </AddReviewFormWrapper>
       </div>
     )
   }
