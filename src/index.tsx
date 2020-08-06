@@ -1,15 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { store } from './store'
+
 import App from './App'
 
-const loadApplication = () => {
-  const DOMElement = window.document.getElementById('wrapper')
+const loadApplication = (): void => {
+  const DOMElement: HTMLElement = window.document.getElementById('wrapper')
 
-  const render = Application => {
+  const render = (Application: React.SFC<{}>): void => {
     ReactDOM.render(
-      <Application store={store} />,
-      DOMElement
+      <Application />, DOMElement
     )
   }
 

@@ -4,8 +4,9 @@ import { Router, Route } from 'react-router-dom'
 import Main from './Main'
 import { GlobalStyle } from './style'
 import history from '../hashHistory'
+import { store } from '../store'
 
-const App = ({ store }) => (
+const App: React.SFC<{}> = () => (
   <StoreProvider store={store}>
     <GlobalStyle />
     <Router history={history}>
