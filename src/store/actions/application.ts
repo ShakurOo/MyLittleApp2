@@ -1,7 +1,7 @@
-import type { ActionType } from '@app/store'
+import type { ActionType, BasicAction } from '@app/store'
 import type { Device } from '@app/types'
 
-export interface SetDeviceAction {
+export interface SetDeviceAction extends BasicAction {
   type: 'SET_DEVICE',
   payload: {
     device: Device
@@ -23,7 +23,7 @@ export const onSetDevice: SetDevice = device => {
 
 // /////////////////
 
-export interface GetDeviceAction {
+export interface GetDeviceAction extends BasicAction {
   type: 'GET_DEVICE'
 }
 

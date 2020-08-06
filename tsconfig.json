@@ -4,6 +4,7 @@
     "esModuleInterop": true,
     "jsx": "react",
     "module": "commonjs",
+    "moduleResolution": "node",
     "noImplicitAny": false,
     "outDir": "./dist/",
     "paths": {
@@ -14,6 +15,7 @@
     "types": ["jest", "node"]
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*",
+    "./src/typings.d.ts"
   ]
 }

@@ -2,7 +2,6 @@ import { shallow } from 'enzyme'
 import React from 'react'
 import Loader from './'
 
-/* eslint-env jest */
 describe('Components', () => {
   describe('Loader', () => {
     it('renders <Loader> as a snapshot', () => {
@@ -16,7 +15,8 @@ describe('Components', () => {
       const shallowLoader = shallow(
         <Loader />
       )
-      expect(shallowLoader.find('img')).toExist()
+      expect(shallowLoader.find('img'))
+        .toBeDefined()
     })
   })
 })

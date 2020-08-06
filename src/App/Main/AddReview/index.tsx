@@ -35,7 +35,7 @@ class AddReview extends Component<AddReviewProps, AddReviewState> {
     username.length >= 5
   )
 
-  onSubmit = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  onSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
 
     // Prevent script injection
@@ -52,7 +52,7 @@ class AddReview extends Component<AddReviewProps, AddReviewState> {
     })
   }
 
-  onReviewChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  onReviewChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
     const review: string = event.target.value
     const { formValues: { username } } = this.state
     const isValidForm = this.isValidForm({ username, review })
@@ -80,7 +80,7 @@ class AddReview extends Component<AddReviewProps, AddReviewState> {
     })
   }
 
-  render () {
+  render (): JSX.Element {
     const {
       formValues: { confidentiality, username, review },
       isValidForm

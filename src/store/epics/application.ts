@@ -8,7 +8,7 @@ import { onSetDevice, GET_DEVICE, GetDeviceAction } from '../actions'
 const appicationEpic: Epic = (
   actions$: ActionsObservable
 ) => actions$.pipe(
-  ofType(GET_DEVICE),
+  ofType(GET_DEVICE as any),
   take(1),
   tap((action: GetDeviceAction) => {
     console.log('EPIC GET_DEVICE', action)

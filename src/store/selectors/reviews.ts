@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect'
-import type { State } from '@app/store'
+import type { Store } from '@app/store'
 import type { Reviews } from '@app/types'
 import { ReviewsState } from '../reducers/reviews'
 
-const getReviews = (state: State): ReviewsState => state.reviews
+const getReviews = (store: Store): ReviewsState => store.reviews
 
 export const getReviewsList = createSelector(
   getReviews,

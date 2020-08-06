@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { Provider as StoreProvider } from 'react-redux'
 import { Router, Route } from 'react-router-dom'
 import Main from './Main'

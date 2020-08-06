@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect'
-import type { State } from '@app/store'
+import type { Store } from '@app/store'
 import type { Device } from '@app/types'
 import type { ApplicationState } from '../reducers/application'
 
-const getApplication = (state: State): ApplicationState => state.application
+const getApplication = (store: Store): ApplicationState => store.application
 
 export const getDevice = createSelector(
   getApplication,

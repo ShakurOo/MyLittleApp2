@@ -1,7 +1,7 @@
-import type { ActionType } from '@app/store'
+import type { ActionType, BasicAction } from '@app/store'
 import type { Review, ReviewForm } from '@app/types'
 
-export interface GetReviewAction {
+export interface GetReviewAction extends BasicAction {
   type: 'GET_REVIEW'
 }
 
@@ -16,7 +16,7 @@ export const onGetReview: GetReview = () => ({
 
 // /////////////////
 
-export interface ReviewFetchStartedAction {
+export interface ReviewFetchStartedAction extends BasicAction {
   type: 'REVIEW_FETCH_STARTED'
 }
 
@@ -31,7 +31,7 @@ export const onReviewFetchStarted: ReviewFetchStarted = () => ({
 
 // /////////////////
 
-export interface ReviewFetchErrorAction {
+export interface ReviewFetchErrorAction extends BasicAction {
   type: 'REVIEW_FETCH_ERROR',
   payload: {
     error: { message: string }
@@ -52,7 +52,7 @@ export const onReviewFetchError: ReviewFetchError = message => ({
 
 // /////////////////
 
-export interface ReviewFetchedAction {
+export interface ReviewFetchedAction extends BasicAction {
   type: 'REVIEW_FETCHED',
   payload: {
     review: Review
@@ -73,7 +73,7 @@ export const onReviewFetched: ReviewFetched = review => ({
 
 // /////////////////
 
-export interface ReviewAddStartedAction {
+export interface ReviewAddStartedAction extends BasicAction {
   type: 'REVIEW_ADD_STARTED',
   payload: {
     reviewForm: ReviewForm
@@ -94,7 +94,7 @@ export const onReviewAddStarted: ReviewAddStarted = reviewForm => ({
 
 // /////////////////
 
-export interface ReviewAddedAction {
+export interface ReviewAddedAction extends BasicAction {
   type: 'REVIEW_ADDED',
   payload: {
     reviewForm: ReviewForm

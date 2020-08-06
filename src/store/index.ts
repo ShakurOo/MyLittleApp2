@@ -16,11 +16,15 @@ import type {
 } from './actions'
 import epics from './epics'
 
-export type State = {
-  application: ApplicationState,
-  reviews: ReviewsState
+export interface BasicAction {
+  readonly type: ActionType,
+  readonly payload?: Payload
 }
-export type Action = GetDeviceAction
+
+export type ActionType = string
+
+export type Action =
+  GetDeviceAction
 | SetDeviceAction
 | GetReviewAction
 | ReviewAddedAction
@@ -28,15 +32,35 @@ export type Action = GetDeviceAction
 | ReviewFetchedAction
 | ReviewFetchErrorAction
 | ReviewFetchStartedAction
-export type ActionType = any
-export type ActionCreator<A:Action> = (...any) => A
-export type GetState = () => State
-export type Store = { getState: GetState }
+
+export type ActionCreator = {
+  (type: ActionType, payload?: Payload): BasicAction
+}
+
+export interface GetStore {
+  (): Store
+}
+
+export type Payload = any // eslint-disable-line
+
+export interface Reducer<State> {
+  (state: State, action: BasicAction): State
+}
+
+export interface Selector<State, R> {
+  (state: State): R
+}
+
 export type ActionsObservable = Observable<Action>
+
 export type Epic = (ActionsObservable, State) => ActionsObservable
+
 export type EpicWithInjection = (ActionsObservable, State, { api: any }) => ActionsObservable
-export type Selector<T> = State => T
-export type Reducer<S> = (S, Action) => S
+
+export type Store = {
+  application: ApplicationState,
+  reviews: ReviewsState
+}
 
 const reducer = combineReducers({
   application,

@@ -2,13 +2,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const postcssPresetEnv = require('postcss-preset-env')
 const precss = require('precss')
+const webpack = require('webpack')
 
 module.exports = {
   entry: './src/index.tsx',
-  externals: {
-    'react': 'React',
-    'react-dom': 'ReactDOM'
-  },
   devtool: 'source-map',
   module: {
     rules: [
@@ -18,37 +15,9 @@ module.exports = {
         loader: 'ts-loader'
       },
       {
+        exclude: /node_modules/,
         test: /\.(?:ico|gif|png|jpg|jpeg|webp|svg)$/i,
         loader: 'file-loader'
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-              importLoaders: 1,
-              modules: true,
-              localIdentName: '[name]__[local]_[hash:base64]'
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            ident: 'postcss',
-            options: {
-              sourceMap: true,
-              plugins: () => [
-                precss(),
-                postcssPresetEnv({
-                  browsers: ['last 2 versions', 'ie >= 9'],
-                  compress: true
-                })
-              ]
-            }
-          }
-        ]
       }
     ]
   },
@@ -65,6 +34,6 @@ module.exports = {
     alias: {
       '@app': path.resolve(__dirname, 'src')
     },
-    extensions: ['.css', '.ts', '.tsx', '.js', '.json']
+    extensions: ['.ts', '.tsx', '.js', '.json']
   }
 }

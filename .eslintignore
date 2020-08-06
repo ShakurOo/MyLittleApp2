@@ -1,10 +1,4 @@
 /node_modules/
 npm-debug.log
-/__tests__
-webpack.config.babel.js
-webpack.config.common.js
-webpack.config.dev.js
-webpack.config.prod.js
-/src/static
-/src/style
+__tests__
 *.md

@@ -17,6 +17,7 @@ import {
   onReviewAdded,
   onReviewFetchError,
   onReviewFetchStarted,
+  ReviewFetchStartedAction,
   onReviewFetched
 } from '../actions'
 
@@ -34,7 +35,7 @@ const getReviewFromUserForm = (action: ReviewAddStartedAction): Observable<Revie
   })).pipe(tap(history.push('/reviews?newReview=true')))
 }
 
-const getReviewFromAPI = (): Observable<GetReviewAction | ReviewFetchedAction> => {
+const getReviewFromAPI = (): Observable<ReviewFetchStartedAction | ReviewFetchedAction> => {
   return fetchReviews().pipe(
     switchMap(({ response = [] }: { response: any }) => of(onReviewFetched(response))),
     startWith(onReviewFetchStarted())
@@ -44,7 +45,7 @@ const getReviewFromAPI = (): Observable<GetReviewAction | ReviewFetchedAction> =
 const reviewsEpic: Epic = (
   actions$: ActionsObservable
 ) => actions$.pipe(
-  ofType(GET_REVIEW, REVIEW_ADD_STARTED),
+  ofType(GET_REVIEW as any, REVIEW_ADD_STARTED),
   switchMap((action: GetReviewAction | ReviewAddStartedAction) => (
     (isActionType(GET_REVIEW, action))
       ? getReviewFromAPI()
