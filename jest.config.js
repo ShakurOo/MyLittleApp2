@@ -1,12 +1,9 @@
 module.exports = {
   clearMocks: true,
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
+  moduleFileExtensions: ['ts', 'tsx'],
   moduleDirectories: ['node_modules', '<rootDir>/src'],
-  moduleNameMapper: {
-    '\\.(css)$': 'identity-obj-proxy'
-  },
   setupFilesAfterEnv: './test/jest/setup.js',
   testMatch: [
-    '**/*.(spec).+(ts|tsx|js)'
+    '**/*.(spec).+(ts|tsx)'
   ]
 }

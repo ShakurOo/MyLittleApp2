@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
-import { RouteComponentProps } from 'react-router'
-import { Link } from 'react-router-dom'
+import { Link, RouteComponentProps } from 'react-router-dom'
 import welcomeImage from './assets/hello-lbc.png'
 import { NavItem, Wrapper } from './style'
 class Header extends PureComponent<RouteComponentProps> {

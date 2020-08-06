@@ -32,7 +32,9 @@ const getReviewFromUserForm = (action: ReviewAddStartedAction): Observable<Revie
     ...reviewForm,
     username: usernameWithoutScriptTag,
     review: reviewWithoutScriptTag
-  })).pipe(tap(history.push('/reviews?newReview=true')))
+  })).pipe(tap(() => {
+    history.push('/reviews?newReview=true')
+  }))
 }
 
 const getReviewFromAPI = (): Observable<ReviewFetchStartedAction | ReviewFetchedAction> => {
