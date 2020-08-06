@@ -1,8 +1,6 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
-const postcssPresetEnv = require('postcss-preset-env')
-const precss = require('precss')
-const webpack = require('webpack')
 
 module.exports = {
   entry: './src/index.tsx',
