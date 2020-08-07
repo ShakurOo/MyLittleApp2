@@ -1,50 +1,40 @@
 import React, { lazy, Suspense } from 'react'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import Chunk from '@app/components/Chunk'
+import { routes } from '@app/constants'
+import type { HomeComponentPromise, ComponentPromise } from '@app/types'
 import Footer from './Footer'
 import { Wrapper } from './style'
 
 const Header = lazy(() => import(/* webpackChunkName: "header" */ './Header'))
-const loadHomePage = () => import(/* webpackChunkName: "home-page" */ './Home')
-const loadReviewsPage = () => import(/* webpackChunkName: "reviews-page" */ './Reviews')
-const loadAddReviewPage = () => import(/* webpackChunkName: "add-review-page" */ './AddReview')
 
-// This show case how you can access routing info in your component
-const HeaderWithRouter = withRouter((props) => (
-  <Suspense fallback={null}>
+const HeaderWithRouter = withRouter((props): JSX.Element => (
+  <Suspense fallback={'Please Wait'}>
     <Header {...props} />
   </Suspense>
 ))
 
-const Main = () => (
+const Main = (): JSX.Element => (
   <Wrapper>
     <HeaderWithRouter />
 
     <div>
       <Switch>
-        <Route
-          exact
-          path='/'
-          component={props => (
-            <Chunk {...props} load={loadHomePage} />
-          )}
-        />
-        <Route
-          path='/reviews'
-          component={props => (
-            <Chunk {...props} load={loadReviewsPage} />
-          )}
-        />
-        <Route
-          path='/add-review'
-          component={props => (
-            <Chunk {...props} load={loadAddReviewPage} />
-          )}
-        />
+        { routes.map(({ Component, exact, name, path }) => (
+            <Route
+              {...exact && { exact }}
+              key={name}
+              path={path}
+              component={(props): JSX.Element => (
+                <Chunk {...props} load={(): ComponentPromise => Component} />
+              )}
+            />
+        ))}
+
         <Route
           path='*'
-          component={props => (
-            <Chunk {...props} load={loadHomePage} />
+          component={(props): JSX.Element => (
+            <Chunk {...props} load={(): HomeComponentPromise => routes[0].Component} />
           )}
         />
       </Switch>

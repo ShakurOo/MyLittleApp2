@@ -1,36 +1,35 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { Link, RouteComponentProps } from 'react-router-dom'
+import { routes } from '@app/constants'
+import type { RouteParams } from '@app/types'
 import welcomeImage from './assets/hello-lbc.png'
 import { NavItem, Wrapper } from './style'
-class Header extends PureComponent<RouteComponentProps> {
-  render () {
-    const { pathname } = this.props.location
 
-    const isHome = pathname === '/'
-    const isReviews = pathname === '/reviews'
-    const isAddReview = pathname === '/add-review'
-
-    return (
-      <Wrapper>
-        <div className='content'>
-          <ul className='nav'>
-
-            <NavItem isHome={isHome}>
-              {isHome ? 'Home' : <Link to='/'>Home</Link>}
-            </NavItem>
-            <NavItem isReviews={isReviews}>
-              { isReviews ? 'Reviews' : <Link to='/reviews'>Reviews</Link> }
-            </NavItem>
-            <NavItem isAddReview={isAddReview}>
-              { isAddReview ? 'Add review' : <Link to='/add-review'>Add review</Link> }
-            </NavItem>
-          </ul>
-
-          { welcomeImage && <img src={welcomeImage} alt='Hello LBC' /> }
-        </div>
-      </Wrapper>
-    )
-  }
+interface HeaderProps extends RouteComponentProps {
+  location: Location
 }
+const Header: React.SFC<HeaderProps> = ({
+  location: { pathname }
+}) => (
+  <Wrapper>
+    <div className='content'>
+      <ul className='nav'>
+        { routes.map(({ name, path }: RouteParams): JSX.Element => {
+            const isActive: boolean = pathname === path
+            return (
+              <NavItem isActive={isActive} key={name}>
+                { isActive
+                  ? name
+                  : <Link to={path}>{ name }</Link>
+                }
+              </NavItem>
+            )
+        }) }
+      </ul>
+
+      { welcomeImage && <img src={welcomeImage} alt='Hello LBC' /> }
+    </div>
+  </Wrapper>
+)
 
 export default Header

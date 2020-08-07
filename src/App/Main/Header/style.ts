@@ -1,12 +1,10 @@
 import styled from 'styled-components'
 
 interface NavItemStyledProps {
-  isAddReview?: boolean,
-  isHome?: boolean,
-  isReviews?: boolean
+  isActive: boolean
 }
 
-const NavItem = styled.li(({ isAddReview, isHome, isReviews }: NavItemStyledProps) => `
+const NavItem = styled.li(({ isActive }: NavItemStyledProps) => `
   border-radius: 6px;
   cursor: default;
   font-weight: 100;
@@ -14,7 +12,7 @@ const NavItem = styled.li(({ isAddReview, isHome, isReviews }: NavItemStyledProp
   margin-right: 10px;
   padding: 5px 10px;
 
-  ${(isAddReview || isHome || isReviews)
+  ${(isActive)
     ? `
       background-color: #ffffff;
       color: #fabe90;

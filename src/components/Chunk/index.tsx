@@ -42,7 +42,7 @@ export default class Chunk extends PureComponent<ChunkProps, ChunkState> {
       })
   }
 
-  render () {
+  render (): JSX.Element {
     const Component = this.state.component
     const { Loader } = this.props
 
