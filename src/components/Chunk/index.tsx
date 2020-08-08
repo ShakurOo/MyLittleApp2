@@ -24,7 +24,7 @@ export default class Chunk extends PureComponent<ChunkProps, ChunkState> {
     this.load()
   }
 
-  componentDidUpdate (prevProps: ChunkProps) {
+  componentDidUpdate (prevProps: ChunkProps): void {
     if (prevProps.load !== this.props.load) { this.load() }
   }
 
@@ -42,7 +42,7 @@ export default class Chunk extends PureComponent<ChunkProps, ChunkState> {
       })
   }
 
-  render (): JSX.Element {
+  render () {
     const Component = this.state.component
     const { Loader } = this.props
 

@@ -35,7 +35,7 @@ class AddReview extends Component<AddReviewProps, AddReviewState> {
     username.length >= 5
   )
 
-  onSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  onSubmit = (event: React.ChangeEvent<HTMLFormElement>): void => {
     event.preventDefault()
 
     // Prevent script injection

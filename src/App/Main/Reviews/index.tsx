@@ -1,25 +1,24 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useContext, useEffect, useMemo } from 'react'
 import { Link, RouteComponentProps } from 'react-router-dom'
 import { History } from 'history'
+import {
+  onGetReview
+} from '@app/store/actions'
+import ReviewsContext from '@app/store/context/reviews'
 import type { Review, Reviews as ReviewsType } from '@app/types'
-import withConnect from './connector'
 import { Wrapper } from './style'
 
 const scrollToBottomPage = (): void => {
   window.scrollTo(0, document.body.scrollHeight)
 }
 interface ReviewsProps extends RouteComponentProps {
-  history: History,
-  reviews: ReviewsType,
-  onGetReview: { (): void }
+  history: History
 }
-const Reviews: React.SFC<ReviewsProps> = ({
-  history,
-  reviews,
-  onGetReview
-}) => {
+const Reviews: React.SFC<ReviewsProps> = ({ history }) => {
+  const { state: { list: reviews }, dispatch } = useContext(ReviewsContext)
+
   const canShowLoadMore = useMemo((): boolean => (
-    reviews.length <= 10
+    reviews.length < 10
   ), [reviews.length])
 
   const publicReviews = useMemo((): ReviewsType => (
@@ -34,7 +33,7 @@ const Reviews: React.SFC<ReviewsProps> = ({
     }
   }, [history])
 
-  return (
+  return useMemo(() => (
     <Wrapper>
       <h1>Reviews list</h1>
       <p>The list of available reviews</p>
@@ -76,7 +75,7 @@ const Reviews: React.SFC<ReviewsProps> = ({
       { canShowLoadMore && (
         <div className='wrapperLoadMore'>
           <button
-            onClick={onGetReview}
+            onClick={(): void => { dispatch(onGetReview()) }}
             type='button'
           >
             Load more review
@@ -91,7 +90,7 @@ const Reviews: React.SFC<ReviewsProps> = ({
         </div>
       )}
     </Wrapper>
-  )
+  ), [canShowLoadMore, dispatch, publicReviews])
 }
 
-export default withConnect(Reviews)
+export default Reviews

@@ -50,6 +50,7 @@
     "xhr2": "^0.1.4"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "history": "^4.7.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",

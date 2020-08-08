@@ -63,8 +63,7 @@ export type Store = {
 }
 
 const reducer = combineReducers({
-  application,
-  reviews
+  application
 })
 
 const middlewares = []
