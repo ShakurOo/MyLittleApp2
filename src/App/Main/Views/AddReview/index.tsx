@@ -4,8 +4,10 @@ import React, {
   useMemo,
   useReducer
 } from 'react'
+import { RouteComponentProps } from 'react-router-dom'
 import { onAddReview } from '@app/store/actions/reviews'
 import ReviewsContext from '@app/store/context/reviews'
+import { RoutesPaths } from '@app/constants'
 import type { ReviewFormValues } from '@app/types'
 import { Confidentiality } from '@app/types'
 import {
@@ -19,7 +21,7 @@ import reviewFormReducer, {
 } from './reducers/reviewForm'
 import { AddReviewFormWrapper } from './style'
 
-const AddReview: React.SFC<{}> = () => {
+const AddReview: React.SFC<RouteComponentProps> = ({ history }) => {
   const [
     { formValues, isPristine, isValid }, dispatch
   ] = useReducer(reviewFormReducer, initialReviewFormState)
@@ -35,7 +37,12 @@ const AddReview: React.SFC<{}> = () => {
     event.preventDefault()
 
     reviewsDispatch(onAddReview(formValues as ReviewFormValues))
-  }, [formValues, reviewsDispatch])
+
+    history.push({
+      pathname: RoutesPaths.REVIEWS,
+      search: '?newReview=true'
+    })
+  }, [formValues, history, reviewsDispatch])
 
   return (
     <div>

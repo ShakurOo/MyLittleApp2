@@ -21,10 +21,8 @@ const AddReviewButton = (): JSX.Element => (
 const scrollToBottomPage = (): void => {
   window.scrollTo(0, document.body.scrollHeight)
 }
-interface ReviewsProps extends RouteComponentProps {
-  history: History
-}
-const Reviews: React.SFC<ReviewsProps> = ({ history }) => {
+
+const Reviews: React.SFC<RouteComponentProps> = ({ location, history }) => {
   const { state: { list: reviews }, dispatch } = useContext(ReviewsContext)
 
   const canShowLoadMore = useMemo((): boolean => (
@@ -41,7 +39,7 @@ const Reviews: React.SFC<ReviewsProps> = ({ history }) => {
 
       history.replace({ search: '' })
     }
-  }, [history])
+  }, [location, history])
 
   return useMemo(() => (
     <Wrapper>
