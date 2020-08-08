@@ -1,144 +1,87 @@
-import React, { Component } from 'react'
-import type { Review, ReviewForm } from '@app/types'
+import React, { useMemo, useReducer } from 'react'
+import {
+  onFormAuthorChanged,
+  onFormConfidentialityChanged,
+  onFormTextChanged
+} from './actions/reviewForm'
+import reviewFormReducer, {
+  Confidentiality,
+  initialState,
+  MIN_TEXT_LENGTH
+} from './reducers/reviewForm'
 import { AddReviewFormWrapper } from './style'
-import withConnect from './connector'
 
-interface AddReviewProps {
-  onValidFormReview: {
-    (formValues: ReviewForm): Review
-  }
-}
+const AddReview: React.SFC<{}> = () => {
+  const [
+    { formValues, isPristine, isValid }, dispatch
+  ] = useReducer(reviewFormReducer, initialState)
 
-interface AddReviewState {
-  formValues: ReviewForm,
-  isValidForm: boolean
-}
+  const isValidForm = useMemo(() => (
+    isPristine || !isValid
+  ), [isPristine, isValid])
 
-class AddReview extends Component<AddReviewProps, AddReviewState> {
-  constructor (props: AddReviewProps) {
-    super(props)
+  return (
+    <div>
+      <h1>Add your review Cowboy</h1>
+      <p>This page allows you adding a review.</p>
 
-    this.state = {
-      formValues: {
-        confidentiality: 'public',
-        username: '',
-        review: ''
-      },
-      isValidForm: false
-    }
-  }
+      <h3>What happened when you clicks on SUBMIT ?</h3>
+      <p>The form values is passed through an action and intercepted by the <strong>reviews epic</strong> which dispatch another action depending on specific statements.</p>
+      <p>For our case, this epic dispatch an <strong>action including the cleaned form values</strong>. This action is intercepted by the <strong>reviews reducer</strong> and this reducer update the store by adding your new review.</p>
 
-  isValidForm = ({ review, username }): boolean => Boolean(
-    review.length &&
-    review.length >= 50 &&
-    username.length &&
-    username.length >= 5
-  )
+      <AddReviewFormWrapper
+        name='addReview'
+        onSubmit={}
+      >
+        <input
+          placeholder='Your name ?'
+          type='text'
+          value={formValues.author}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>): void => {
+            dispatch(onFormAuthorChanged(event.target.value))
+          }}
+        />
 
-  onSubmit = (event: React.ChangeEvent<HTMLFormElement>): void => {
-    event.preventDefault()
+        <textarea
+          placeholder='What is your review ?'
+          value={formValues.review}
+          onChange={(event: React.ChangeEvent<HTMLTextAreaElement>): void => {
+            dispatch(onFormTextChanged(event.target.value as string))
+          }}
+        />
+        <p className='info'>Minimum {MIN_TEXT_LENGTH} characters</p>
 
-    // Prevent script injection
-    this.props.onValidFormReview(this.state.formValues)
-  }
-
-  onConfidentialityChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const confidentiality: any = event.target.value
-    this.setState({
-      formValues: {
-        ...this.state.formValues,
-        confidentiality
-      }
-    })
-  }
-
-  onReviewChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
-    const review: string = event.target.value
-    const { formValues: { username } } = this.state
-    const isValidForm = this.isValidForm({ username, review })
-
-    this.setState({
-      formValues: {
-        ...this.state.formValues,
-        review
-      },
-      isValidForm
-    })
-  }
-
-  onUsernameChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const username: string = event.target.value
-    const { formValues: { review } } = this.state
-    const isValidForm = this.isValidForm({ username, review })
-
-    this.setState({
-      formValues: {
-        ...this.state.formValues,
-        username
-      },
-      isValidForm
-    })
-  }
-
-  render (): JSX.Element {
-    const {
-      formValues: { confidentiality, username, review },
-      isValidForm
-    } = this.state
-    return (
-      <div>
-        <h1>Add your review Cowboy</h1>
-        <p>This page allows you adding a review.</p>
-
-        <h3>What happened when you clicks on SUBMIT ?</h3>
-        <p>The form values is passed through an action and intercepted by the <strong>reviews epic</strong> which dispatch another action depending on specific statements.</p>
-        <p>For our case, this epic dispatch an <strong>action including the cleaned form values</strong>. This action is intercepted by the <strong>reviews reducer</strong> and this reducer update the store by adding your new review.</p>
-
-        <AddReviewFormWrapper
-          name='addReview'
-          onSubmit={this.onSubmit}
-        >
+        <div className='wrapperConfidentiality'>
           <input
-            placeholder='Your username ?'
-            type='text'
-            value={username}
-            onChange={this.onUsernameChange}
+            checked={formValues.confidentiality === Confidentiality.PUBLIC}
+            id='public'
+            name='confidentiality'
+            onChange={(event: React.ChangeEvent<HTMLInputElement>): void => {
+              dispatch(onFormConfidentialityChanged(event.target.value as Confidentiality.PUBLIC))
+            }}
+            type='radio'
+            value={Confidentiality.PUBLIC}
           />
-
-          <textarea
-            placeholder='What is your review ?'
-            value={review}
-            onChange={this.onReviewChange}
+          <label htmlFor='public'>Public</label>
+          <input
+            checked={formValues.confidentiality === Confidentiality.PRIVATE}
+            id='private'
+            name='confidentiality'
+            onChange={(event: React.ChangeEvent<HTMLInputElement>): void => {
+              dispatch(onFormConfidentialityChanged(event.target.value as Confidentiality.PRIVATE))
+            }}
+            type='radio'
+            value={Confidentiality.PRIVATE}
           />
+          <label htmlFor='private'>Private</label>
+        </div>
 
-          <div className='wrapperConfidentiality'>
-            <input
-              checked={confidentiality === 'public'}
-              id='public'
-              name='confidentiality'
-              onChange={this.onConfidentialityChange}
-              type='radio'
-              value='public'
-            />
-            <label htmlFor='public'>Public</label>
-            <input
-              checked={confidentiality === 'private'}
-              id='private'
-              name='confidentiality'
-              onChange={this.onConfidentialityChange}
-              type='radio'
-              value='private'
-            />
-            <label htmlFor='private'>Private</label>
-          </div>
-
-          <button type='submit' disabled={!isValidForm}>
-            Confirm my review
-          </button>
-        </AddReviewFormWrapper>
-      </div>
-    )
-  }
+        <button type='submit' disabled={isValidForm}>
+          Confirm my review
+        </button>
+      </AddReviewFormWrapper>
+    </div>
+  )
 }
 
-export default withConnect(AddReview)
+export default AddReview

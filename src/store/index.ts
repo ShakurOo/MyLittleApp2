@@ -1,6 +1,11 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import { createEpicMiddleware } from 'redux-observable'
 import type { Observable } from 'rxjs'
+import type {
+  FormAuthorChangedAction,
+  FormConfidentialityChangedAction,
+  FormTextChangedAction
+} from '@app/App/Main/Views/AddReview/actions/reviewForm'
 import * as api from '../api'
 import application, { ApplicationState } from './reducers/application'
 import reviews, { ReviewsState } from './reducers/reviews'
@@ -24,7 +29,10 @@ export interface BasicAction {
 export type ActionType = string
 
 export type Action =
-  GetDeviceAction
+  FormAuthorChangedAction
+| FormConfidentialityChangedAction
+| FormTextChangedAction
+| GetDeviceAction
 | SetDeviceAction
 | GetReviewAction
 | ReviewAddedAction
