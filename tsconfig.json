@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "esModuleInterop": true,
+    "jsx": "react",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "outDir": "./dist/",
+    "paths": {
+      "@app/*": ["src/*"],
+    },
+    "sourceMap": true,
+    "target": "es6",
+    "types": ["jest", "node"]
+  },
+  "include": [
+    "./src/**/*",
+    "./src/typings.d.ts"
+  ]
+}

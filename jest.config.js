@@ -1,20 +1,12 @@
 module.exports = {
-  setupTestFrameworkScriptFile: './test/jest/setup.js',
-  testMatch: [
-    '**/src/**/?(*.)(spec|test).js?(x)'
-  ],
-  moduleFileExtensions: ['js', 'jsx', 'json'],
-  moduleDirectories: ['node_modules', '<rootDir>/src'],
+  clearMocks: true,
+  moduleFileExtensions: ['ts', 'tsx', 'js'],
   moduleNameMapper: {
-    '^test/(.*)$': '<rootDir>/test/$1',
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/test/jest/fileMock.js',
-    '\\.(css|less)$': 'identity-obj-proxy'
+    '\\.(png|gif)$': '<rootDir>/test/jest/fileMock.ts'
   },
+  setupFilesAfterEnv: ['<rootDir>/test/jest/setup.ts'],
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
   transform: {
-    '^.+\\.(js|jsx)$': 'babel-jest'
-  },
-  transformIgnorePatterns: [
-    '/node_modules/(?!@vp).*/'
-  ]
+    '^.+\\.tsx?$': 'ts-jest'
+  }
 }

@@ -1,40 +1,68 @@
 {
+  "parser": "@typescript-eslint/parser",
   "env": {
     "browser": true,
-    "commonjs": true,
-    "es6": true
+    "es6": true,
+    "jest": true,
+    "node": true
   },
-  "plugins": ["flowtype", "react"],
-  "parser": "babel-eslint",
   "extends": [
-    "plugin:flowtype/recommended",
-    "standard",
-    "standard-jsx"
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/typescript",
+    "plugin:import/warnings",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
   ],
-  "rules": {
-    "react/jsx-no-undef": [2, { "allowGlobals": true }]
+  "overrides": [
+    {
+      "files": ["*.{test,spec}.ts{,x}"],
+      "rules": {
+        "import/no-extraneous-dependencies": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-empty-function": "off"
+      }
+    }
+  ],
+  "parserOptions":  {
+    "ecmaVersion":  2020,
+    "ecmaFeatures":  {
+      "jsx":  true
+    },
+    "sourceType":  "module"
   },
-  "globals": {
-    "window": false,
-    "global": false,
-    "require": false,
-    "expect": false,
-    "shallow": false,
-    "render": false,
-    "mount": false,
-    "toJson": false,
-    "gen": false,
-    "check": false,
-    "shallowSnapshot": false,
-    "SyntheticEvent": false,
-    "TimeoutID": false,
-    "location": false,
-    "jest": false,
-    "nock": false,
-    "API_URI": false,
-    "API_URI2": false,
-    "__PRODUCTION__": false,
-    "__VERSION__": false,
-    "__RAVEN__": false
+  "rules": {
+    "cypress/no-unnecessary-waiting": "off",
+    "brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
+    "no-irregular-whitespace": "off",
+    "import/no-unresolved": "off",
+    "import/no-named-as-default": "off",
+    "lines-between-class-members": ["error", "always", {
+      "exceptAfterSingleLine": true
+    }],
+    "object-curly-spacing": ["error", "always"],
+    "quote-props": ["error", "as-needed"],
+    "react/jsx-curly-spacing": ["error", {
+      "spacing": {"objectLiterals": "never"}
+    }, {
+      "allowMultiline": false,
+      "spacing": {"objectLiterals": "always"}
+    }],
+    "react/prop-types": "off",
+    "space-before-function-paren": ["error", "always"],
+    "@typescript-eslint/member-delimiter-style": ["error", {
+      "multiline": {
+        "delimiter": "comma",
+        "requireLast": false
+      }
+    }],
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-explicit-any": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
