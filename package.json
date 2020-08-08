@@ -12,7 +12,7 @@
     "url": "https://github.com/ShakurOo/MyLittleApp"
   },
   "author": "Kevin Pinto <kpinto.web@gmail.com>",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "engines": {
     "npm": ">=6.1.7",
     "node": ">=12.0.0",
@@ -39,9 +39,11 @@
     "file-loader": "^3.0.1",
     "html-webpack-plugin": "^3.2.0",
     "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.2.2",
     "jest-enzyme": "^7.0.2",
     "style-loader": "^0.23.1",
     "styled-components": "^5.1.1",
+    "ts-jest": "^26.1.4",
     "ts-loader": "^8.0.2",
     "typescript": "^3.9.7",
     "webpack": "^4.29.5",
