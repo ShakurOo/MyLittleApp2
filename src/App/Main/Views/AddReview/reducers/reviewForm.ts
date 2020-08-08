@@ -9,6 +9,9 @@ import {
 
 export const MIN_TEXT_LENGTH = 50
 
+const isAuthorValid = (author: string): boolean => Boolean(author.length)
+const isTextAreaValid = (review: string): boolean => Boolean(review.length && review.length >= MIN_TEXT_LENGTH)
+
 export interface ReviewFormState {
   formValues: ReviewFormValues,
   isPristine: boolean,
@@ -32,21 +35,20 @@ const reviewFormReducer = (
   switch (action.type) {
     case FORM_CONFIDENTIALITY_CHANGED: {
       const { confidentiality } = action.payload
-      const isValid = Boolean(confidentiality.length)
 
       return {
+        ...state,
         formValues: {
           ...state.formValues,
           confidentiality
         },
-        isPristine: false,
-        isValid
+        isPristine: false
       }
     }
 
     case FORM_TEXT_CHANGED: {
       const { review } = action.payload
-      const isValid = Boolean(review.length && review.length >= MIN_TEXT_LENGTH)
+      const isValid = isAuthorValid(state.formValues.author) && isTextAreaValid(review)
       const sanatizedReview = review.replace(scriptHTMLTagRegex, '')
 
       return {
@@ -61,7 +63,7 @@ const reviewFormReducer = (
 
     case FORM_AUTHOR_CHANGED: {
       const { author } = action.payload
-      const isValid = Boolean(author.length)
+      const isValid = isTextAreaValid(state.formValues.review) && isAuthorValid(author)
       const sanatizedAuthor = author.replace(scriptHTMLTagRegex, '')
 
       return {
