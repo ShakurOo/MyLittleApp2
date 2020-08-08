@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useMemo } from 'react'
 import { Link, RouteComponentProps } from 'react-router-dom'
-import { History } from 'history'
 import { onGetReview } from '@app/store/actions/reviews'
 import ReviewsContext from '@app/store/context/reviews'
 import { RoutesPaths } from '@app/constants'
@@ -40,6 +39,12 @@ const Reviews: React.SFC<RouteComponentProps> = ({ location, history }) => {
       history.replace({ search: '' })
     }
   }, [location, history])
+
+  useEffect(() => {
+    if (document as Document) {
+      document.title = `List of available reviews (${reviews.length})`
+    }
+  }, [reviews.length])
 
   return useMemo(() => (
     <Wrapper>

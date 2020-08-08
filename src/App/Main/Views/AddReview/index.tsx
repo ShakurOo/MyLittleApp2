@@ -1,6 +1,7 @@
 import React, {
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useReducer
 } from 'react'
@@ -43,6 +44,12 @@ const AddReview: React.SFC<RouteComponentProps> = ({ history }) => {
       search: '?newReview=true'
     })
   }, [formValues, history, reviewsDispatch])
+
+  useEffect(() => {
+    if (document as Document) {
+      document.title = 'Add your own review'
+    }
+  }, [])
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import React, { useMemo, useReducer } from 'react'
+import React, { useEffect, useMemo, useReducer } from 'react'
 import { onGetDevice } from './actions/device'
 import LogoIMG from './assets/logo.png'
 import deviceReducer, { initialState } from './reducers/device'
@@ -6,6 +6,12 @@ import { Wrapper } from './style'
 
 const Home: React.SFC<{}> = () => {
   const [device, dispatch] = useReducer(deviceReducer, initialState)
+
+  useEffect(() => {
+    if (document as Document) {
+      document.title = 'Welcome to MyLittleApp'
+    }
+  }, [])
 
   return useMemo((): JSX.Element => (
     <Wrapper>
