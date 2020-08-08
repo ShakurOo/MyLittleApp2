@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, RouteComponentProps } from 'react-router-dom'
-import { routes } from '@app/constants'
+import { ROUTES } from '@app/constants'
 import type { RouteParams } from '@app/types'
 import welcomeImage from './assets/hello-lbc.png'
 import { NavItem, Wrapper } from './style'
@@ -14,7 +14,7 @@ const Header: React.SFC<HeaderProps> = ({
   <Wrapper>
     <div className='content'>
       <ul className='nav'>
-        { routes.map(({ name, path }: RouteParams): JSX.Element => {
+        { ROUTES.map(({ name, path }: RouteParams): JSX.Element => {
             const isActive: boolean = pathname === path
             return (
               <NavItem isActive={isActive} key={name}>

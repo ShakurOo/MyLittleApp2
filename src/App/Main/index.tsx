@@ -13,17 +13,17 @@ import axiosInstance, {
   axiosRequest,
   AxiosResponse
 } from '@app/api'
-import { routes } from '@app/constants'
+import { REVIEWS_ENDPOINT, ROUTES } from '@app/constants'
 import type { Action } from '@app/store'
 import type {
   ComponentPromise,
   HomeComponentPromise,
   Review,
 } from '@app/types'
-import Footer from './Footer'
+import Footer from './Common/Footer'
 import { Wrapper } from './style'
 
-const Header = lazy(() => import(/* webpackChunkName: "header" */ './Header'))
+const Header = lazy(() => import(/* webpackChunkName: "header" */ './Common/Header'))
 
 const HeaderWithRouter = withRouter((props): JSX.Element => (
   <Suspense fallback={'Please Wait'}>
@@ -37,7 +37,7 @@ const Main = (): JSX.Element => {
   const fetchReview = useCallback((): void => {
     dispatch(onReviewFetchStarted())
 
-    axiosInstance({ endpoint: '//www.randomtext.me' })
+    axiosInstance({ endpoint: REVIEWS_ENDPOINT })
       .get('api')
       .then(({ data }: AxiosResponse<Review>) => {
         dispatch(onReviewFetched(data))
@@ -76,7 +76,7 @@ const Main = (): JSX.Element => {
 
         <div>
           <Switch>
-            { routes.map(({ Component, exact, name, path }) => (
+            { ROUTES.map(({ Component, exact, name, path }) => (
                 <Route
                   {...exact && { exact }}
                   key={name}
@@ -90,7 +90,7 @@ const Main = (): JSX.Element => {
             <Route
               path='*'
               component={(props): JSX.Element => (
-                <Chunk {...props} load={(): HomeComponentPromise => routes[0].Component} />
+                <Chunk {...props} load={(): HomeComponentPromise => ROUTES[0].Component} />
               )}
             />
           </Switch>

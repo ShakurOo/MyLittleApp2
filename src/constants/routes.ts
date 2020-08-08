@@ -6,21 +6,21 @@ export enum RoutesPaths {
   REVIEWS = '/reviews'
 }
 
-export const routes: RoutesParams = [
+export const ROUTES: RoutesParams = [
   {
-    Component: import(/* webpackChunkName: "home-page" */ '@app/App/Main/Home'),
+    Component: import(/* webpackChunkName: "home-page" */ '@app/App/Main/Views/Home'),
     exact: true,
     name: 'Home',
     path: RoutesPaths.HOME
   },
   {
-    Component: import(/* webpackChunkName: "reviews-page" */ '@app/App/Main/Reviews'),
+    Component: import(/* webpackChunkName: "reviews-page" */ '@app/App/Main/Views/Reviews'),
     exact: false,
     name: 'Reviews',
     path: RoutesPaths.REVIEWS
   },
   {
-    Component: import(/* webpackChunkName: "review-page" */ '@app/App/Main/AddReview'),
+    Component: import(/* webpackChunkName: "review-page" */ '@app/App/Main/Views/AddReview'),
     exact: false,
     name: 'Add review',
     path: RoutesPaths.ADD_REVIEW

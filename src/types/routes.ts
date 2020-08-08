@@ -1,6 +1,6 @@
-type AddReviewComponentPromise = Promise<typeof import('@app/App/Main/AddReview')>
-export type HomeComponentPromise = Promise<typeof import('@app/App/Main/Home')>
-type ReviewsComponentPromise = Promise<typeof import('@app/App/Main/Reviews')>
+type AddReviewComponentPromise = Promise<typeof import('@app/App/Main/Views/AddReview')>
+export type HomeComponentPromise = Promise<typeof import('@app/App/Main/Views/Home')>
+type ReviewsComponentPromise = Promise<typeof import('@app/App/Main/Views/Reviews')>
 
 export type ComponentPromise =  AddReviewComponentPromise | HomeComponentPromise | ReviewsComponentPromise
 

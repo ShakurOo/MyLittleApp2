@@ -1,0 +1,1 @@
+export const REVIEWS_ENDPOINT = '//www.randomtext.me'

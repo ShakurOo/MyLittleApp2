@@ -20,6 +20,7 @@ const Wrapper = styled.footer`
       vertical-align: middle;
 
       & > img {
+        filter: grayscale(1);
         height: auto;
         width: 30px;
       }
