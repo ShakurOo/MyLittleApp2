@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useMemo } from 'react'
 import { Link, RouteComponentProps } from 'react-router-dom'
 import { History } from 'history'
-import {
-  onGetReview
-} from '@app/store/actions'
+import { onGetReview } from '@app/store/actions'
 import ReviewsContext from '@app/store/context/reviews'
+import { RoutesPaths } from '@app/constants'
 import type { Review, Reviews as ReviewsType } from '@app/types'
 import { Wrapper } from './style'
 
@@ -57,7 +56,7 @@ const Reviews: React.SFC<ReviewsProps> = ({ history }) => {
       <br />
 
       <div className='wrapperReviews'>
-        { publicReviews.map(({ author, time, text }: Review, i: number) => (
+        { publicReviews.map(({ author, time, text }: Review, i: number): JSX.Element => (
           <section key={`${time}-${i}`} className='review'>
             <span className='sticker'>
               { i + 1 }
@@ -85,7 +84,9 @@ const Reviews: React.SFC<ReviewsProps> = ({ history }) => {
             className='light'
             type='button'
           >
-            <Link to='/add-review'>Add your own review</Link>
+            <Link to={RoutesPaths.ADD_REVIEW}>
+              Add your own review
+            </Link>
           </button>
         </div>
       )}

@@ -12,7 +12,18 @@ const Wrapper = styled.footer`
     color: #e1e1e1;
     position: absolute;
     right: 0;
-    top: 15px;
+    top: 10px;
+
+    & > a {
+      display: inline-block;
+      margin-left: 7px;
+      vertical-align: middle;
+
+      & > img {
+        height: auto;
+        width: 30px;
+      }
+    }
   }
 `
 
