@@ -1,6 +1,5 @@
 import { scriptHTMLTagRegex } from '@app/helpers/regex'
-import type { Action } from '@app/store'
-import type { ReviewFormValues } from '@app/types'
+import type { Action, ReviewFormValues } from '@app/types'
 import { Confidentiality } from '@app/types'
 import {
   FORM_AUTHOR_CHANGED,

@@ -4,8 +4,8 @@ import React, {
   useMemo,
   useReducer
 } from 'react'
+import { onAddReview } from '@app/store/actions/reviews'
 import ReviewsContext from '@app/store/context/reviews'
-import { onAddReview } from '@app/store/actions'
 import type { ReviewFormValues } from '@app/types'
 import { Confidentiality } from '@app/types'
 import {

@@ -1,4 +1,4 @@
-import type { ActionType, BasicAction } from '@app/store'
+import type { ActionType, BasicAction } from '@app/types'
 
 export interface GetDeviceAction extends BasicAction {
   type: 'GET_DEVICE'

@@ -4,14 +4,15 @@ import type {
   FormTextChangedAction
 } from '@app/App/Main/Views/AddReview/actions/reviewForm'
 import type {
+  GetDeviceAction
+} from '@app/App/Main/Views/Home/actions/device'
+import type {
   AddReviewAction,
-  GetDeviceAction,
   GetReviewAction,
   ReviewFetchedAction,
   ReviewFetchErrorAction,
-  ReviewFetchStartedAction,
-  SetDeviceAction
-} from './actions'
+  ReviewFetchStartedAction
+} from '@app/store/actions/reviews'
 
 export interface BasicAction {
   readonly type: ActionType,
@@ -26,7 +27,6 @@ export type Action =
 | FormConfidentialityChangedAction
 | FormTextChangedAction
 | GetDeviceAction
-| SetDeviceAction
 | GetReviewAction
 | ReviewFetchedAction
 | ReviewFetchErrorAction
@@ -36,7 +36,7 @@ export type ActionCreator = {
   (type: ActionType, payload?: Payload): BasicAction
 }
 
-export type Payload = any // eslint-disable-line
+export type Payload = any
 
 export interface Reducer<State> {
   (state: State, action: BasicAction): State

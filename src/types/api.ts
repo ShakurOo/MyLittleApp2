@@ -1,10 +1,6 @@
 import { AxiosResponse } from 'axios'
+import type { Review } from './reviews'
 
-export interface APIReviewResponse extends AxiosResponse {
-  data: {
-    author: string,
-    isPrivate: boolean,
-    text: string,
-    time: string
-  }
+export interface ReviewsAPIResponse extends AxiosResponse {
+  data: Review
 }

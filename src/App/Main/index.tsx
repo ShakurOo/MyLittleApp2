@@ -1,20 +1,22 @@
-import React, { lazy, Suspense, useEffect, useCallback, useReducer } from 'react'
+import React, {
+  lazy,
+  Suspense,
+  useEffect,
+  useCallback,
+  useReducer
+} from 'react'
 import { Switch as RouterSwitch, withRouter } from 'react-router-dom'
-import ReviewsContext from '@app/store/context/reviews'
-import reviewsReducer, { initialState } from '@app/store/reducers/reviews'
 import {
   GET_REVIEW,
   onReviewFetched,
   onReviewFetchError,
   onReviewFetchStarted
-} from '@app/store/actions'
-import axiosInstance, {
-  axiosRequest,
-  AxiosResponse
-} from '@app/api'
+} from '@app/store/actions/reviews'
+import ReviewsContext from '@app/store/context/reviews'
+import reviewsReducer, { initialState } from '@app/store/reducers/reviews'
 import { REVIEWS_ENDPOINT } from '@app/constants'
-import type { Action } from '@app/store'
-import type { Review } from '@app/types'
+import type { Action, ReviewsAPIResponse } from '@app/types'
+import axiosInstance, { axiosRequest } from '@app/api'
 import Footer from './Common/Footer'
 import { Wrapper } from './style'
 
@@ -40,7 +42,7 @@ const Main: React.SFC<MainProps> = ({ children }) => {
 
     axiosInstance({ endpoint: REVIEWS_ENDPOINT })
       .get('api')
-      .then(({ data }: AxiosResponse<Review>) => {
+      .then(({ data }: ReviewsAPIResponse) => {
         dispatch(onReviewFetched(data))
       })
       .catch((error: Error) => {

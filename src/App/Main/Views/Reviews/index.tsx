@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useMemo } from 'react'
 import { Link, RouteComponentProps } from 'react-router-dom'
 import { History } from 'history'
-import { onGetReview } from '@app/store/actions'
+import { onGetReview } from '@app/store/actions/reviews'
 import ReviewsContext from '@app/store/context/reviews'
 import { RoutesPaths } from '@app/constants'
 import type { Review, Reviews as ReviewsType } from '@app/types'

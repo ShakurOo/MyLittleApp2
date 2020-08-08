@@ -1,11 +1,11 @@
-import type { Action } from '@app/store'
 import type {
+  Action,
   Review,
   ReviewFormValues,
   Reviews
 } from '@app/types'
 import { Confidentiality } from '@app/types'
-import { ADD_REVIEW, REVIEW_FETCHED } from '../actions'
+import { ADD_REVIEW, REVIEW_FETCHED } from '../actions/reviews'
 
 export interface ReviewsState {
   isFetched: boolean,

@@ -1,5 +1,8 @@
-import type { ActionType, BasicAction } from '@app/store'
-import { Confidentiality } from '@app/types'
+import {
+  ActionType,
+  BasicAction,
+  Confidentiality
+} from '@app/types'
 
 export interface FormTextChangedAction extends BasicAction {
   type: 'FORM_TEXT_CHANGED',
@@ -36,7 +39,6 @@ export const onFormConfidentialityChanged: OnFormConfidentialityChanged = confid
   payload: { confidentiality }
 })
 
-// /////////////////
 export interface FormAuthorChangedAction extends BasicAction {
   type: 'FORM_AUTHOR_CHANGED',
   payload: {

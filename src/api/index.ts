@@ -1,12 +1,6 @@
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse
-} from 'axios'
+import axios, { AxiosInstance, AxiosResponse } from 'axios'
 
-let
-  axiosAdapter,
-  axiosRequest
+let axiosRequest
 
 interface AxiosInstanceCallParams {
   endpoint: string
@@ -26,10 +20,8 @@ const axiosInstance = ({
 
 export {
   axios,
-  axiosAdapter,
   AxiosResponse,
-  axiosRequest,
-  AxiosRequestConfig
+  axiosRequest
 }
 
 export default axiosInstance

@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { initialState } from '@app/store/reducers/reviews'
-import type { Action } from '@app/store'
+import type { Action } from '@app/types'
 
 type ContextAPI = {
   state: typeof initialState,

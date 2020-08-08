@@ -1,6 +1,5 @@
 import { getDeviceInfo } from '@app/helpers/useragents'
-import { isActionType } from '@app/helpers/redux'
-import type { Action } from '@app/store'
+import type { Action } from '@app/types'
 import { GET_DEVICE } from '../actions/device'
 
 export type DeviceInterface =
@@ -37,13 +36,16 @@ export default (
   action: Action
 ): DeviceState => {
 
-  if (isActionType(GET_DEVICE, action)) {
-    const device = getDeviceInfo()
-    const newState = device
+  switch (action.type) {
+    case GET_DEVICE: {
+      const device = getDeviceInfo()
+      const newState = device
 
-    console.log('REDUCER GET_DEVICE ', device)
-    return newState
+      console.log('REDUCER GET_DEVICE ', device)
+      return newState
+    }
+
+    default:
+      return state
   }
-
-  return state
 }
