@@ -1,8 +1,7 @@
 import React, { lazy, Suspense, useEffect, useCallback, useReducer } from 'react'
-import { Route, Switch, withRouter } from 'react-router-dom'
+import { Switch as RouterSwitch, withRouter } from 'react-router-dom'
 import ReviewsContext from '@app/store/context/reviews'
 import reviewsReducer, { initialState } from '@app/store/reducers/reviews'
-import Chunk from '@app/components/Chunk'
 import {
   GET_REVIEW,
   onReviewFetched,
@@ -13,25 +12,27 @@ import axiosInstance, {
   axiosRequest,
   AxiosResponse
 } from '@app/api'
-import { REVIEWS_ENDPOINT, ROUTES } from '@app/constants'
+import { REVIEWS_ENDPOINT } from '@app/constants'
 import type { Action } from '@app/store'
-import type {
-  ComponentPromise,
-  HomeComponentPromise,
-  Review,
-} from '@app/types'
+import type { Review } from '@app/types'
 import Footer from './Common/Footer'
 import { Wrapper } from './style'
 
 const Header = lazy(() => import(/* webpackChunkName: "header" */ './Common/Header'))
 
-const HeaderWithRouter = withRouter((props): JSX.Element => (
+const HeaderWithRouter = withRouter((
+  props: { location: Location }
+): JSX.Element => (
   <Suspense fallback={'Please Wait'}>
     <Header {...props} />
   </Suspense>
 ))
 
-const Main = (): JSX.Element => {
+interface MainProps {
+  children: RouterSwitch
+}
+
+const Main: React.SFC<MainProps> = ({ children }) => {
   const [state, dispatch] = useReducer(reviewsReducer, initialState);
 
   const fetchReview = useCallback((): void => {
@@ -71,29 +72,10 @@ const Main = (): JSX.Element => {
         state,
         dispatch: customDispatch
       }}>
-
         <HeaderWithRouter />
 
         <div>
-          <Switch>
-            { ROUTES.map(({ Component, exact, name, path }) => (
-                <Route
-                  {...exact && { exact }}
-                  key={name}
-                  path={path}
-                  component={(props): JSX.Element => (
-                    <Chunk {...props} load={(): ComponentPromise => Component} />
-                  )}
-                />
-            ))}
-
-            <Route
-              path='*'
-              component={(props): JSX.Element => (
-                <Chunk {...props} load={(): HomeComponentPromise => ROUTES[0].Component} />
-              )}
-            />
-          </Switch>
+          { children }
         </div>
       </ReviewsContext.Provider>
 

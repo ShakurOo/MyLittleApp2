@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   height: 0;
   margin-left: 35px;
   margin-right: 35px;

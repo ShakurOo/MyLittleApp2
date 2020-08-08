@@ -1,14 +1,8 @@
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
-import { createEpicMiddleware } from 'redux-observable'
-import type { Observable } from 'rxjs'
 import type {
   FormAuthorChangedAction,
   FormConfidentialityChangedAction,
   FormTextChangedAction
 } from '@app/App/Main/Views/AddReview/actions/reviewForm'
-import * as api from '../api'
-import application, { ApplicationState } from './reducers/application'
-import reviews, { ReviewsState } from './reducers/reviews'
 import type {
   AddReviewAction,
   GetDeviceAction,
@@ -18,7 +12,6 @@ import type {
   ReviewFetchStartedAction,
   SetDeviceAction
 } from './actions'
-import epics from './epics'
 
 export interface BasicAction {
   readonly type: ActionType,
@@ -43,56 +36,8 @@ export type ActionCreator = {
   (type: ActionType, payload?: Payload): BasicAction
 }
 
-export interface GetStore {
-  (): Store
-}
-
 export type Payload = any // eslint-disable-line
 
 export interface Reducer<State> {
   (state: State, action: BasicAction): State
 }
-
-export interface Selector<State, R> {
-  (state: State): R
-}
-
-export type ActionsObservable = Observable<Action>
-
-export type Epic = (ActionsObservable, State) => ActionsObservable
-
-export type EpicWithInjection = (ActionsObservable, State, { api: any }) => ActionsObservable
-
-export type Store = {
-  application: ApplicationState,
-  reviews: ReviewsState
-}
-
-const reducer = combineReducers({
-  application
-})
-
-const middlewares = []
-
-const epicMiddleware = createEpicMiddleware({
-  dependencies: { api }
-})
-
-middlewares.push(epicMiddleware)
-
-const storeCreator = (initialState: any | {} = {}) => createStore(
-  reducer,
-  initialState,
-  compose(
-    applyMiddleware(...middlewares),
-    window.__REDUX_DEVTOOLS_EXTENSION__
-      ? window.__REDUX_DEVTOOLS_EXTENSION__()
-      : f => f
-  )
-)
-
-const store = storeCreator()
-
-epicMiddleware.run(epics)
-
-export { store, storeCreator }
