@@ -4,7 +4,6 @@
   "description": "A little app which list some reviews and allows user adding others reviews",
   "scripts": {
     "dev": "yarn && webpack-dev-server --mode development --open --hot",
-    "flow": "flow",
     "test": "jest --no-cache"
   },
   "repository": {
