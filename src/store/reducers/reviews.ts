@@ -37,7 +37,8 @@ const reviewsReducer = (
             text: text_out,
             time
           }
-        ]
+        ],
+        isFetched: true
       }
 
       return newState

@@ -1,5 +1,18 @@
 import styled from 'styled-components'
 
+const WrapperBadge = styled.span`
+  background: #f39e5c;
+  border-radius: 5px;
+  color: white;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-left: 5px;
+  min-width: 22px;
+  padding: 3px;
+  text-align: center;
+`
+
 interface NavItemStyledProps {
   isActive: boolean
 }
@@ -9,14 +22,20 @@ const NavItem = styled.li(({ isActive }: NavItemStyledProps) => `
   cursor: default;
   font-weight: 100;
   display: inline-block;
+  vertical-align: middle;
   margin-right: 10px;
-  padding: 5px 10px;
+  padding: 5px 10px 5px;
 
   ${(isActive)
     ? `
       background-color: #ffffff;
       color: #fabe90;
       font-size: 1.5rem;
+
+      & > span {
+        display: inline-block;
+        vertical-align: middle;
+      }
     `
     : ''}
 
@@ -60,4 +79,4 @@ const Wrapper = styled.header`
   }
 `
 
-export { NavItem, Wrapper }
+export { WrapperBadge, NavItem, Wrapper }
