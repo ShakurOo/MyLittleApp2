@@ -1,20 +1,5 @@
 import type { ActionType, BasicAction } from '@app/store'
-import type { Review, ReviewForm } from '@app/types'
-
-export interface GetReviewAction extends BasicAction {
-  type: 'GET_REVIEW'
-}
-
-export const GET_REVIEW: ActionType = 'GET_REVIEW'
-
-interface GetReview {
-  (): GetReviewAction
-}
-export const onGetReview: GetReview = () => ({
-  type: 'GET_REVIEW'
-})
-
-// /////////////////
+import type { Review, ReviewFormValues } from '@app/types'
 
 export interface ReviewFetchStartedAction extends BasicAction {
   type: 'REVIEW_FETCH_STARTED'
@@ -28,8 +13,6 @@ interface ReviewFetchStarted {
 export const onReviewFetchStarted: ReviewFetchStarted = () => ({
   type: 'REVIEW_FETCH_STARTED'
 })
-
-// /////////////////
 
 export interface ReviewFetchErrorAction extends BasicAction {
   type: 'REVIEW_FETCH_ERROR',
@@ -49,8 +32,6 @@ export const onReviewFetchError: ReviewFetchError = message => ({
     error: { message }
   }
 })
-
-// /////////////////
 
 export interface ReviewFetchedAction extends BasicAction {
   type: 'REVIEW_FETCHED',
@@ -72,42 +53,33 @@ export const onReviewFetched: ReviewFetched = review => ({
 })
 
 // /////////////////
-
-export interface ReviewAddStartedAction extends BasicAction {
-  type: 'REVIEW_ADD_STARTED',
-  payload: {
-    reviewForm: ReviewForm
-  }
+export interface GetReviewAction extends BasicAction {
+  type: 'GET_REVIEW'
 }
 
-export const REVIEW_ADD_STARTED: ActionType = 'REVIEW_ADD_STARTED'
+export const GET_REVIEW: ActionType = 'GET_REVIEW'
 
-interface ReviewAddStarted {
-  (reviewForm: ReviewForm): ReviewAddStartedAction
+interface GetReview {
+  (): GetReviewAction
 }
-export const onReviewAddStarted: ReviewAddStarted = reviewForm => ({
-  type: 'REVIEW_ADD_STARTED',
-  payload: {
-    reviewForm
-  }
+export const onGetReview: GetReview = () => ({
+  type: 'GET_REVIEW'
 })
 
-// /////////////////
-
-export interface ReviewAddedAction extends BasicAction {
-  type: 'REVIEW_ADDED',
+export interface AddReviewAction extends BasicAction {
+  type: 'ADD_REVIEW',
   payload: {
-    reviewForm: ReviewForm
+    reviewForm: ReviewFormValues
   }
 }
 
-export const REVIEW_ADDED: ActionType = 'REVIEW_ADDED'
+export const ADD_REVIEW: ActionType = 'ADD_REVIEW'
 
-interface ReviewAdded {
-  (reviewForm: ReviewForm): ReviewAddedAction
+interface AddReview {
+  (reviewForm: ReviewFormValues): AddReviewAction
 }
-export const onReviewAdded: ReviewAdded = reviewForm => ({
-  type: 'REVIEW_ADDED',
+export const onAddReview: AddReview = reviewForm => ({
+  type: 'ADD_REVIEW',
   payload: {
     reviewForm
   }

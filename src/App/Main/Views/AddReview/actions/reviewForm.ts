@@ -1,5 +1,5 @@
 import type { ActionType, BasicAction } from '@app/store'
-import { Confidentiality } from '../reducers/reviewForm'
+import { Confidentiality } from '@app/types'
 
 export interface FormTextChangedAction extends BasicAction {
   type: 'FORM_TEXT_CHANGED',

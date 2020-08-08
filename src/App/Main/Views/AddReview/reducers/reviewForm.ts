@@ -1,4 +1,7 @@
+import { scriptHTMLTagRegex } from '@app/helpers/regex'
 import type { Action } from '@app/store'
+import type { ReviewFormValues } from '@app/types'
+import { Confidentiality } from '@app/types'
 import {
   FORM_AUTHOR_CHANGED,
   FORM_CONFIDENTIALITY_CHANGED,
@@ -7,17 +10,8 @@ import {
 
 export const MIN_TEXT_LENGTH = 50
 
-export enum Confidentiality {
-  PUBLIC = 'public',
-  PRIVATE = 'private'
-}
-
 export interface ReviewFormState {
-  formValues: {
-    author: string,
-    confidentiality: Confidentiality,
-    review: string
-  },
+  formValues: ReviewFormValues,
   isPristine: boolean,
   isValid: boolean
 }
@@ -54,11 +48,12 @@ const reviewFormReducer = (
     case FORM_TEXT_CHANGED: {
       const { review } = action.payload
       const isValid = Boolean(review.length && review.length >= MIN_TEXT_LENGTH)
+      const sanatizedReview = review.replace(scriptHTMLTagRegex, '')
 
       return {
         formValues: {
           ...state.formValues,
-          review
+          review: sanatizedReview
         },
         isPristine: false,
         isValid
@@ -68,11 +63,12 @@ const reviewFormReducer = (
     case FORM_AUTHOR_CHANGED: {
       const { author } = action.payload
       const isValid = Boolean(author.length)
+      const sanatizedAuthor = author.replace(scriptHTMLTagRegex, '')
 
       return {
         formValues: {
           ...state.formValues,
-          author
+          author: sanatizedAuthor
         },
         isPristine: false,
         isValid

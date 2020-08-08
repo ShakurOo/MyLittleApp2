@@ -1,6 +1,11 @@
 import type { Action } from '@app/store'
-import type { ReviewForm, Review, Reviews } from '@app/types'
-import { REVIEW_ADDED, REVIEW_FETCHED } from '../actions'
+import type {
+  Review,
+  ReviewFormValues,
+  Reviews
+} from '@app/types'
+import { Confidentiality } from '@app/types'
+import { ADD_REVIEW, REVIEW_FETCHED } from '../actions'
 
 export interface ReviewsState {
   isFetched: boolean,
@@ -38,16 +43,16 @@ const reviewsReducer = (
       return newState
     }
 
-    case REVIEW_ADDED: {
+    case ADD_REVIEW: {
       const {
+        author,
         confidentiality,
-        username,
         review: text
-      }: ReviewForm = action.payload.reviewForm
+      }: ReviewFormValues = action.payload.reviewForm
 
       const review: Review = {
-        author: username,
-        isPrivate: (confidentiality === 'private'),
+        author,
+        isPrivate: (confidentiality === Confidentiality.PRIVATE),
         text,
         time: new Date().toLocaleTimeString()
       }

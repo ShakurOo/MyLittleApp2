@@ -10,10 +10,9 @@ import * as api from '../api'
 import application, { ApplicationState } from './reducers/application'
 import reviews, { ReviewsState } from './reducers/reviews'
 import type {
+  AddReviewAction,
   GetDeviceAction,
   GetReviewAction,
-  ReviewAddedAction,
-  ReviewAddStartedAction,
   ReviewFetchedAction,
   ReviewFetchErrorAction,
   ReviewFetchStartedAction,
@@ -29,14 +28,13 @@ export interface BasicAction {
 export type ActionType = string
 
 export type Action =
-  FormAuthorChangedAction
+  AddReviewAction
+| FormAuthorChangedAction
 | FormConfidentialityChangedAction
 | FormTextChangedAction
 | GetDeviceAction
 | SetDeviceAction
 | GetReviewAction
-| ReviewAddedAction
-| ReviewAddStartedAction
 | ReviewFetchedAction
 | ReviewFetchErrorAction
 | ReviewFetchStartedAction

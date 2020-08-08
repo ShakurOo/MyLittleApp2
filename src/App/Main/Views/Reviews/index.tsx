@@ -7,6 +7,17 @@ import { RoutesPaths } from '@app/constants'
 import type { Review, Reviews as ReviewsType } from '@app/types'
 import { Wrapper } from './style'
 
+const AddReviewButton = (): JSX.Element => (
+  <Link to={RoutesPaths.ADD_REVIEW}>
+    <button
+      className='light'
+      type='button'
+    >
+      Add your own review
+    </button>
+  </Link>
+)
+
 const scrollToBottomPage = (): void => {
   window.scrollTo(0, document.body.scrollHeight)
 }
@@ -43,12 +54,8 @@ const Reviews: React.SFC<ReviewsProps> = ({ history }) => {
         In other words, each time the button is clicked, a new dynamic review aggregate the existing reviews list.
       </p>
 
-      <button
-        className='light'
-        type='button'
-      >
-        <Link to='/add-review'>Add your own review</Link>
-      </button>
+      <AddReviewButton />
+
       <p className='limit'>
         Reviews quantity limit: <span>10</span>
       </p>
@@ -80,14 +87,7 @@ const Reviews: React.SFC<ReviewsProps> = ({ history }) => {
             Load more review
           </button>
 
-          <button
-            className='light'
-            type='button'
-          >
-            <Link to={RoutesPaths.ADD_REVIEW}>
-              Add your own review
-            </Link>
-          </button>
+          <AddReviewButton />
         </div>
       )}
     </Wrapper>

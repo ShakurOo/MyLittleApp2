@@ -1,12 +1,20 @@
-import React, { useMemo, useReducer } from 'react'
+import React, {
+  useCallback,
+  useContext,
+  useMemo,
+  useReducer
+} from 'react'
+import ReviewsContext from '@app/store/context/reviews'
+import { onAddReview } from '@app/store/actions'
+import type { ReviewFormValues } from '@app/types'
+import { Confidentiality } from '@app/types'
 import {
   onFormAuthorChanged,
   onFormConfidentialityChanged,
   onFormTextChanged
 } from './actions/reviewForm'
 import reviewFormReducer, {
-  Confidentiality,
-  initialState,
+  initialState as initialReviewFormState,
   MIN_TEXT_LENGTH
 } from './reducers/reviewForm'
 import { AddReviewFormWrapper } from './style'
@@ -14,11 +22,20 @@ import { AddReviewFormWrapper } from './style'
 const AddReview: React.SFC<{}> = () => {
   const [
     { formValues, isPristine, isValid }, dispatch
-  ] = useReducer(reviewFormReducer, initialState)
+  ] = useReducer(reviewFormReducer, initialReviewFormState)
+  const { dispatch: reviewsDispatch } = useContext(ReviewsContext)
 
   const isValidForm = useMemo(() => (
     isPristine || !isValid
   ), [isPristine, isValid])
+
+  const handleSubmit = useCallback((
+    event: React.FormEvent<HTMLFormElement>
+  ): void => {
+    event.preventDefault()
+
+    reviewsDispatch(onAddReview(formValues as ReviewFormValues))
+  }, [formValues, reviewsDispatch])
 
   return (
     <div>
@@ -31,7 +48,9 @@ const AddReview: React.SFC<{}> = () => {
 
       <AddReviewFormWrapper
         name='addReview'
-        onSubmit={}
+        onSubmit={(event: React.FormEvent<HTMLFormElement>): void => {
+          handleSubmit(event)
+        }}
       >
         <input
           placeholder='Your name ?'
