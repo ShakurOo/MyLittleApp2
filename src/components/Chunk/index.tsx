@@ -5,55 +5,60 @@ import React, {
 import Loader from '../Loader'
 import { Wrapper } from './style'
 
+let fakeViewTransitionDelay: ReturnType<typeof setTimeout>
+
 interface ChunkProps {
-  load: { (): Promise<any> },
-  Loader: { (): JSX.Element }
+  load: { (): Promise<ComponentType> }
 }
 
 interface ChunkState {
-  component: ComponentType<any> | null
+  ComponentChild: ComponentType|null
 }
 
 export default class Chunk extends PureComponent<ChunkProps, ChunkState> {
-  static defaultProps = { Loader: Loader }
 
   constructor (props: ChunkProps) {
     super(props)
 
-    this.state = { component: null }
+    this.state = {
+      ComponentChild: null
+    }
+
     this.load()
   }
 
   componentDidUpdate (prevProps: ChunkProps): void {
-    if (prevProps.load !== this.props.load) { this.load() }
+    if (prevProps.load !== this.props.load) {
+      this.load()
+    }
+  }
+
+  componentWillUnmount (): void {
+    fakeViewTransitionDelay && clearTimeout(fakeViewTransitionDelay)
   }
 
   load = (): void => {
-    const { component } = this.state
-
-    if (component) { this.setState({ component: null }) }
+    if (this.state.ComponentChild) {
+      this.setState({ ComponentChild: null })
+    }
 
     this.props.load()
-      .then(component => {
-        setTimeout(() => {
-          /* Simulation loading */
-          this.setState({ component: component.default || component })
+      .then((component: ComponentType & { default: ComponentType }) => {
+        fakeViewTransitionDelay = setTimeout(() => {
+          this.setState({
+            ComponentChild: component.default || component
+          })
         }, Math.floor(Math.random() * 900) + 100)
       })
   }
 
-  render () {
-    const Component = this.state.component
-    const { Loader } = this.props
+  render (): JSX.Element {
+    const ComponentChild = this.state.ComponentChild
 
-    return (Component)
-      ? <Component {...this.props} Loader={null} />
-      : (Loader)
-        ? (
-          <Wrapper>
-            <Loader />
-          </Wrapper>
-        )
-        : 'Loading'
+    return (this.state.ComponentChild)
+      ? <ComponentChild {...this.props} />
+      : <Wrapper>
+          <Loader />
+        </Wrapper>
   }
 }
