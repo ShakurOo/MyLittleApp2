@@ -19,10 +19,6 @@ module.exports = {
       }
     ]
   },
-  output: {
-    path: path.join(__dirname, '/dist'),
-    filename: 'bundle.js'
-  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'

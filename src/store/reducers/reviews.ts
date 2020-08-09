@@ -58,7 +58,11 @@ const reviewsReducer = (
         time: new Date().toLocaleTimeString()
       }
 
-      return { ...state, list: [ ...state.list, review ] }
+      return {
+        ...state,
+        list: [ ...state.list, review ],
+        isFetched: true
+      }
     }
 
     default:

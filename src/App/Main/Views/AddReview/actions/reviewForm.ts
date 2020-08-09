@@ -21,7 +21,6 @@ export const onFormTextChanged: OnFormTextChanged = review => ({
   payload: { review }
 })
 
-// /////////////////
 export interface FormConfidentialityChangedAction extends BasicAction {
   type: 'FORM_CONFIDENTIALITY_CHANGED',
   payload: {

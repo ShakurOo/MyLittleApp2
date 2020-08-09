@@ -48,8 +48,8 @@ const reviewFormReducer = (
 
     case FORM_TEXT_CHANGED: {
       const { review } = action.payload
-      const isValid = isAuthorValid(state.formValues.author) && isTextAreaValid(review)
       const sanatizedReview = review.replace(scriptHTMLTagRegex, '')
+      const isValid = isAuthorValid(state.formValues.author) && isTextAreaValid(sanatizedReview)
 
       return {
         formValues: {
@@ -63,8 +63,8 @@ const reviewFormReducer = (
 
     case FORM_AUTHOR_CHANGED: {
       const { author } = action.payload
-      const isValid = isTextAreaValid(state.formValues.review) && isAuthorValid(author)
       const sanatizedAuthor = author.replace(scriptHTMLTagRegex, '')
+      const isValid = isTextAreaValid(state.formValues.review) && isAuthorValid(sanatizedAuthor)
 
       return {
         formValues: {

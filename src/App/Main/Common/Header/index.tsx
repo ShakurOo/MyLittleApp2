@@ -6,7 +6,7 @@ import type { Reviews, RouteParams } from '@app/types'
 import welcomeImage from './assets/hello-lbc.png'
 import { NavItem, Wrapper, WrapperBadge } from './style'
 
-const Badge: React.SFC<{ reviews: Reviews }> = React.memo(({ reviews }) => {
+const ReviewsBadge: React.SFC<{ reviews: Reviews }> = React.memo(({ reviews }) => {
   const reviewLength = reviews.length
 
   return reviewLength && (
@@ -25,6 +25,7 @@ const Header: React.SFC<HeaderProps> = ({
   const {
     state: { isFetched, list: reviews }
   } = useContext(ReviewsContext)
+
   return (
     <Wrapper>
       <div className='content'>
@@ -40,7 +41,7 @@ const Header: React.SFC<HeaderProps> = ({
                   }
 
                   { isFetched && path === RoutesPaths.REVIEWS && (
-                    <Badge reviews={reviews} />
+                    <ReviewsBadge reviews={reviews} />
                   )}
                 </NavItem>
               </React.Fragment>
@@ -54,6 +55,6 @@ const Header: React.SFC<HeaderProps> = ({
   )
 }
 
-Badge.displayName = 'Badge'
+ReviewsBadge.displayName = 'ReviewsBadge'
 
 export default Header

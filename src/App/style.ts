@@ -85,6 +85,7 @@ const GlobalStyle = createGlobalStyle`
     border: none;
     display: block;
     font-size: 1rem;
+    font-family: 'Raleway', Helvetica, Arial, sans-serif;
     margin-bottom: 20px;
     padding: 15px 15px;
     width: 350px;

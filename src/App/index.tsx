@@ -1,11 +1,11 @@
-import * as React from 'react'
+import React from 'react'
 import { Router, Route, Switch } from 'react-router-dom'
 import Chunk from '@app/components/Chunk'
 import { ROUTES } from '@app/constants'
 import type { ComponentPromise, HomeComponentPromise } from '@app/types'
+import history from '../hashHistory'
 import Main from './Main'
 import { GlobalStyle } from './style'
-import history from '../hashHistory'
 
 const App: React.SFC<{}> = () => (
   <React.Fragment>
